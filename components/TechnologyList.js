@@ -175,3 +175,7 @@ export default function TechnologyList({ technologies, dimension, rings }) {
             margin-top: 0.25rem;
           }
         }
+      `}</style>
+    </div>
+  );
+}
