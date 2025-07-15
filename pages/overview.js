@@ -15,8 +15,7 @@ export default function Overview({ radarData }) {
       const matchesSearch = tech.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           tech.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
       const matchesRing = !filterRing || tech.ring === filterRing;
-      const matchesDimension = !filterDimension || 
-                              (tech.dimensions[filterDimension] && tech.dimensions[filterDimension] > 0);
+      const matchesDimension = !filterDimension || tech.dimension === filterDimension;
       
       return matchesSearch && matchesRing && matchesDimension;
     })
@@ -122,10 +121,7 @@ export default function Overview({ radarData }) {
             <tbody>
               {filteredTechnologies.map(tech => {
                 const ring = getRingInfo(tech.ring);
-                const topDimensions = radarData.dimensions
-                  .filter(dim => tech.dimensions[dim.id] > 0)
-                  .sort((a, b) => (tech.dimensions[b.id] || 0) - (tech.dimensions[a.id] || 0))
-                  .slice(0, 2);
+                const dimension = getDimensionInfo(tech.dimension);
 
                 return (
                   <tr key={tech.id} className="tech-row">
@@ -149,26 +145,14 @@ export default function Overview({ radarData }) {
                     </td>
                     
                     <td className="dimensions-cell">
-                      <div className="dimensions-list">
-                        {topDimensions.map(dim => (
-                          <div key={dim.id} className="dimension-score">
-                            <span className="dimension-name">{dim.name}</span>
-                            <span 
-                              className="score-badge"
-                              style={{ backgroundColor: dim.color }}
-                            >
-                              {tech.dimensions[dim.id]}
-                            </span>
-                          </div>
-                        ))}
-                        {radarData.dimensions.length > 2 && (
-                          <button 
-                            className="show-all-btn"
-                            title="View all dimension scores"
-                          >
-                            +{radarData.dimensions.length - 2}
-                          </button>
-                        )}
+                      <div className="dimension-score">
+                        <span className="dimension-name">{dimension?.name}</span>
+                        <span 
+                          className="dimension-badge"
+                          style={{ backgroundColor: dimension?.color, color: 'white' }}
+                        >
+                          {dimension?.name}
+                        </span>
                       </div>
                     </td>
                     
@@ -410,13 +394,12 @@ export default function Overview({ radarData }) {
           min-width: 80px;
         }
 
-        .score-badge {
+        .dimension-badge {
           color: white;
-          padding: 0.125rem 0.375rem;
-          border-radius: 10px;
+          padding: 0.125rem 0.5rem;
+          border-radius: 12px;
           font-size: 0.75rem;
           font-weight: 600;
-          min-width: 20px;
           text-align: center;
         }
 

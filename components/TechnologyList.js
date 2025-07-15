@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { getRingColor } from '../lib/dataLoader';
 
 export default function TechnologyList({ technologies, dimension, rings }) {
-  // Group technologies by ring
+  // Group technologies by ring - filter by the specific dimension
   const techsByRing = rings.reduce((acc, ring) => {
     acc[ring.id] = technologies
-      .filter(tech => tech.ring === ring.id)
-      .sort((a, b) => (b.dimensions[dimension.id] || 0) - (a.dimensions[dimension.id] || 0));
+      .filter(tech => tech.ring === ring.id && tech.dimension === dimension.id)
+      .sort((a, b) => a.name.localeCompare(b.name));
     return acc;
   }, {});
   
@@ -36,9 +36,6 @@ export default function TechnologyList({ technologies, dimension, rings }) {
                             <span className="indicator changed">CHANGED</span>
                           )}
                         </div>
-                      </div>
-                      <div className="tech-score">
-                        Score: {tech.dimensions[dimension.id] || 0}/10
                       </div>
                       <div className="tech-tags">
                         {tech.tags.slice(0, 3).map(tag => (

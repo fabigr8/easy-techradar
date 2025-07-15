@@ -129,7 +129,7 @@ export default function Home({ radarData }) {
                 <p className="dimension-description">{dimension.description}</p>
                 <TechnologyList 
                   technologies={filteredTechnologies.filter(tech => 
-                    tech.dimensions[dimension.id] && tech.dimensions[dimension.id] > 0
+                    tech.dimension === dimension.id
                   )}
                   dimension={dimension}
                   rings={radarData.rings}

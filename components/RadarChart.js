@@ -46,12 +46,8 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
     const ringIndex = ringOrder.indexOf(tech.ring);
     const ringRadius = (ringIndex + 1) * (maxRadius / 4);
     
-    // Find the dimension with the highest score for this technology
-    const topDimension = dimensions.reduce((top, dim) => 
-      (tech.dimensions[dim.id] || 0) > (tech.dimensions[top.id] || 0) ? dim : top
-    );
-    
-    const dimensionIndex = dimensions.findIndex(d => d.id === topDimension.id);
+    // Find the dimension this technology belongs to
+    const dimensionIndex = dimensions.findIndex(d => d.id === tech.dimension);
     const angleStep = (2 * Math.PI) / dimensions.length;
     const angle = dimensionIndex * angleStep - Math.PI / 2;
     
@@ -64,7 +60,7 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
       x: center + Math.cos(randomAngle) * randomRadius,
       y: center + Math.sin(randomAngle) * randomRadius,
       ring: ringIndex,
-      dimension: topDimension
+      dimension: dimensions.find(d => d.id === tech.dimension)
     };
   };
 

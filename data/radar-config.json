@@ -63,103 +63,73 @@
       "id": "react",
       "name": "React",
       "ring": "adopt",
+      "dimension": "languages",
       "description": "A JavaScript library for building user interfaces with a component-based architecture.",
       "rationale": "React has proven itself as a mature, stable framework with excellent community support and ecosystem.",
       "tags": ["frontend", "javascript", "ui"],
       "url": "https://react.dev",
       "isNew": false,
-      "hasChanged": false,
-      "dimensions": {
-        "languages": 9,
-        "tools": 3,
-        "platforms": 2,
-        "methods": 4
-      }
+      "hasChanged": false
     },
     {
       "id": "typescript",
       "name": "TypeScript",
       "ring": "adopt",
+      "dimension": "languages",
       "description": "A strongly typed programming language that builds on JavaScript.",
       "rationale": "TypeScript provides excellent developer experience with type safety and better tooling.",
       "tags": ["language", "javascript", "types"],
       "url": "https://www.typescriptlang.org",
       "isNew": false,
-      "hasChanged": false,
-      "dimensions": {
-        "languages": 10,
-        "tools": 2,
-        "platforms": 1,
-        "methods": 3
-      }
+      "hasChanged": false
     },
     {
       "id": "graphql",
       "name": "GraphQL",
       "ring": "trial",
+      "dimension": "methods",
       "description": "A query language for APIs and a runtime for fulfilling those queries.",
       "rationale": "GraphQL shows promise for API design but requires careful consideration of complexity vs benefits.",
       "tags": ["api", "backend", "query-language"],
       "url": "https://graphql.org",
       "isNew": false,
-      "hasChanged": false,
-      "dimensions": {
-        "languages": 3,
-        "tools": 7,
-        "platforms": 6,
-        "methods": 8
-      }
+      "hasChanged": false
     },
     {
       "id": "docker",
       "name": "Docker",
       "ring": "adopt",
+      "dimension": "platforms",
       "description": "A platform for developing, shipping, and running applications using containerization.",
       "rationale": "Docker has become essential for consistent deployment and development environments.",
       "tags": ["containers", "devops", "deployment"],
       "url": "https://docker.com",
       "isNew": false,
-      "hasChanged": false,
-      "dimensions": {
-        "languages": 1,
-        "tools": 8,
-        "platforms": 10,
-        "methods": 6
-      }
+      "hasChanged": false
     },
     {
       "id": "ai-coding-assistants",
       "name": "AI Coding Assistants",
       "ring": "trial",
+      "dimension": "tools",
       "description": "AI-powered tools like GitHub Copilot and ChatGPT for code generation and assistance.",
       "rationale": "Showing significant productivity gains but requires careful evaluation of code quality and security.",
       "tags": ["ai", "productivity", "development"],
       "url": "",
       "isNew": true,
-      "hasChanged": false,
-      "dimensions": {
-        "languages": 2,
-        "tools": 9,
-        "platforms": 1,
-        "methods": 7
-      }
+      "hasChanged": false
     },
     {
       "id": "microservices",
       "name": "Microservices Architecture",
       "ring": "assess",
+      "dimension": "methods",
       "description": "An architectural approach that structures an application as a collection of loosely coupled services.",
       "rationale": "Can provide benefits for large teams and complex systems, but adds significant operational complexity.",
       "tags": ["architecture", "distributed-systems"],
       "url": "",
       "isNew": false,
-      "hasChanged": true,
-      "dimensions": {
-        "languages": 1,
-        "tools": 3,
-        "platforms": 8,
-        "methods": 9
-      }
+      "hasChanged": true
     }
   ]
 }

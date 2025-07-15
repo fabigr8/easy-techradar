@@ -83,7 +83,7 @@ export default function About() {
             <h2>The Dimensions</h2>
             <p>
               Our radar is organized into dimensions that represent different aspects of 
-              technology adoption:
+              technology adoption. Each technology belongs to one primary dimension:
             </p>
             <ul className="dimensions-list">
               <li>
@@ -102,21 +102,6 @@ export default function About() {
                 <strong>Methods & Patterns:</strong> Software development methods and design 
                 patterns, from CI/CD to architecture patterns.
               </li>
-            </ul>
-          </section>
-
-          <section>
-            <h2>Dimension Scores</h2>
-            <p>
-              Each technology is scored from 0-10 in each dimension, indicating how relevant 
-              or useful that technology is within that particular area:
-            </p>
-            <ul>
-              <li><strong>0-2:</strong> Minimal relevance</li>
-              <li><strong>3-4:</strong> Some relevance</li>
-              <li><strong>5-6:</strong> Moderate relevance</li>
-              <li><strong>7-8:</strong> High relevance</li>
-              <li><strong>9-10:</strong> Core/Essential in this dimension</li>
             </ul>
           </section>
 
@@ -142,12 +127,12 @@ export default function About() {
             <h2>How to Navigate</h2>
             <ul>
               <li>
-                <strong>Main Radar View:</strong> Use the spider chart to visualize technology 
-                profiles across dimensions. Filter by rings or tags to focus on specific areas.
+                <strong>Main Radar View:</strong> Use the radar chart to visualize technology 
+                positioning across dimensions. Filter by rings or tags to focus on specific areas.
               </li>
               <li>
                 <strong>Technology Details:</strong> Click on any technology to see detailed 
-                information, rationale, and individual dimension scores.
+                information, rationale, and its primary dimension.
               </li>
               <li>
                 <strong>Overview Table:</strong> Use the overview page for a comprehensive 

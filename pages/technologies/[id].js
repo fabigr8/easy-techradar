@@ -98,29 +98,25 @@ export default function TechnologyDetail({ technology, radarData }) {
           </main>
 
           <aside className="sidebar">
-            <div className="dimension-scores">
-              <h3>Dimension Scores</h3>
-              <div className="scores-list">
-                {radarData.dimensions.map(dimension => {
-                  const score = technology.dimensions[dimension.id] || 0;
-                  return (
-                    <div key={dimension.id} className="score-item">
-                      <div className="score-header">
-                        <span className="dimension-name">{dimension.name}</span>
-                        <span className="score-value">{score}/10</span>
+            <div className="primary-dimension">
+              <h3>Primary Dimension</h3>
+              <div className="dimension-info">
+                {(() => {
+                  const dimension = radarData.dimensions.find(d => d.id === technology.dimension);
+                  return dimension ? (
+                    <div className="dimension-card">
+                      <div 
+                        className="dimension-badge"
+                        style={{ backgroundColor: dimension.color, color: 'white' }}
+                      >
+                        {dimension.name}
                       </div>
-                      <div className="score-bar">
-                        <div 
-                          className="score-fill"
-                          style={{
-                            width: `${(score / 10) * 100}%`,
-                            backgroundColor: dimension.color
-                          }}
-                        />
-                      </div>
+                      <p className="dimension-description">{dimension.description}</p>
                     </div>
+                  ) : (
+                    <p>No dimension assigned</p>
                   );
-                })}
+                })()}
               </div>
             </div>
 
@@ -129,7 +125,6 @@ export default function TechnologyDetail({ technology, radarData }) {
               <RadarChart 
                 dimensions={radarData.dimensions}
                 technologies={[technology]}
-                selectedTechnology={technology}
               />
             </div>
 
@@ -305,41 +300,34 @@ export default function TechnologyDetail({ technology, radarData }) {
           space-y: 1rem;
         }
 
-        .score-item {
+        .primary-dimension {
+          margin-bottom: 2rem;
+        }
+
+        .dimension-card {
+          text-align: center;
+        }
+
+        .dimension-badge {
+          display: inline-block;
+          padding: 0.5rem 1rem;
+          border-radius: 20px;
+          font-weight: 600;
           margin-bottom: 1rem;
         }
 
-        .score-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 0.5rem;
-        }
-
-        .dimension-name {
-          font-weight: 500;
-          color: #333;
-        }
-
-        .score-value {
-          font-weight: 600;
+        .dimension-description {
           color: #666;
-        }
-
-        .score-bar {
-          height: 8px;
-          background: #e9ecef;
-          border-radius: 4px;
-          overflow: hidden;
-        }
-
-        .score-fill {
-          height: 100%;
-          border-radius: 4px;
-          transition: width 0.3s ease;
+          font-size: 0.9rem;
+          line-height: 1.4;
+          margin: 0;
         }
 
         .spider-chart-section {
+          height: 400px;
+        }
+
+        .radar-chart-section {
           height: 400px;
         }
 

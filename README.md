@@ -4,8 +4,8 @@ A customizable technology radar with dynamic dimensions, built with Next.js and 
 
 ## Features
 
-- 🕸️ **Spider Chart Visualization**: Multi-dimensional radar chart showing technology relevance across different dimensions
-- 🎯 **Dynamic Dimensions**: Easily configurable dimensions (not limited to 4 quadrants)
+- 🎯 **Radar Chart Visualization**: Multi-dimensional radar chart showing technology positioning within their primary dimensions
+- 🔄 **Dynamic Dimensions**: Easily configurable dimensions (not limited to 4 quadrants)
 - 🔄 **Ring-based Classification**: Adopt, Trial, Assess, Hold methodology
 - 🏷️ **Tag-based Filtering**: Filter technologies by tags and categories
 - 📱 **Responsive Design**: Works on desktop, tablet, and mobile
@@ -63,18 +63,13 @@ Edit `data/radar-config.json` to add or modify technologies:
   "id": "your-technology",
   "name": "Your Technology",
   "ring": "adopt",
+  "dimension": "languages",
   "description": "Description of the technology",
   "rationale": "Why we chose this classification",
   "tags": ["tag1", "tag2"],
   "url": "https://technology-website.com",
   "isNew": false,
-  "hasChanged": false,
-  "dimensions": {
-    "languages": 8,
-    "tools": 2,
-    "platforms": 5,
-    "methods": 3
-  }
+  "hasChanged": false
 }
 ```
 
@@ -166,13 +161,9 @@ For more sophisticated content management, you can:
 
 ## Content Guidelines
 
-### Dimension Scores (0-10)
+### Technology Data Structure
 
-- **0-2**: Minimal relevance
-- **3-4**: Some relevance  
-- **5-6**: Moderate relevance
-- **7-8**: High relevance
-- **9-10**: Core/Essential in this dimension
+Each technology should belong to one primary dimension and be classified in the appropriate ring based on our recommendation level.
 
 ### Ring Classifications
 
