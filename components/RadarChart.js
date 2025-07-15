@@ -4,9 +4,9 @@ import Link from 'next/link';
 export default function RadarChart({ dimensions, technologies, selectedRing = null }) {
   const [hoveredTech, setHoveredTech] = useState(null);
   
-  const size = 600;
+  const size = 700; // Increased size to accommodate labels
   const center = size / 2;
-  const maxRadius = size / 2 - 50;
+  const maxRadius = size / 2 - 80; // Increased margin for labels
   
   // Filter technologies based on selected ring
   const filteredTechnologies = selectedRing 
@@ -40,7 +40,7 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
     return path;
   };
 
-  // Calculate positions for each technology
+  // Calculate positions for each technology (stable positions)
   const getTechPosition = (tech) => {
     const ringOrder = ['adopt', 'trial', 'assess', 'hold'];
     const ringIndex = ringOrder.indexOf(tech.ring);
@@ -51,10 +51,11 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
     const angleStep = (2 * Math.PI) / dimensions.length;
     const angle = dimensionIndex * angleStep - Math.PI / 2;
     
-    // Add some randomness to avoid overlap, but keep within the sector
+    // Use tech.id to create consistent but pseudo-random positioning
+    const seed = tech.id.split('').reduce((a, b) => a + b.charCodeAt(0), 0);
     const sectorWidth = angleStep * 0.8; // 80% of sector width to avoid overlap
-    const randomRadius = ringRadius * (0.7 + Math.random() * 0.3); // 70-100% of ring radius
-    const randomAngle = angle + (Math.random() - 0.5) * sectorWidth;
+    const randomRadius = ringRadius * (0.7 + (seed % 100) / 100 * 0.3); // 70-100% of ring radius
+    const randomAngle = angle + ((seed % 200) / 200 - 0.5) * sectorWidth;
     
     return {
       x: center + Math.cos(randomAngle) * randomRadius,
@@ -118,12 +119,12 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
                 strokeWidth="1"
               />
               <text
-                x={center + Math.cos(angle) * (maxRadius + 20)}
-                y={center + Math.sin(angle) * (maxRadius + 20)}
+                x={center + Math.cos(angle) * (maxRadius + 35)}
+                y={center + Math.sin(angle) * (maxRadius + 35)}
                 textAnchor="middle"
                 dominantBaseline="middle"
                 fill="#333"
-                fontSize="12"
+                fontSize="13"
                 fontWeight="bold"
               >
                 {dimension.name}
@@ -201,23 +202,35 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
               {/* Hover tooltip */}
               {isHovered && (
                 <g>
-                  <rect
-                    x={tech.position.x + 15}
-                    y={tech.position.y - 10}
-                    width="120"
-                    height="20"
-                    fill="rgba(0,0,0,0.8)"
-                    rx="4"
-                  />
-                  <text
-                    x={tech.position.x + 20}
-                    y={tech.position.y + 3}
-                    fill="white"
-                    fontSize="12"
-                    fontWeight="bold"
-                  >
-                    {tech.name}
-                  </text>
+                  {(() => {
+                    const textWidth = tech.name.length * 7 + 20; // Approximate text width
+                    const tooltipX = tech.position.x + 15;
+                    const tooltipY = tech.position.y - 15;
+                    
+                    return (
+                      <>
+                        <rect
+                          x={tooltipX}
+                          y={tooltipY - 10}
+                          width={textWidth}
+                          height="20"
+                          fill="rgba(0,0,0,0.9)"
+                          rx="4"
+                          stroke="rgba(255,255,255,0.2)"
+                          strokeWidth="1"
+                        />
+                        <text
+                          x={tooltipX + 10}
+                          y={tooltipY + 3}
+                          fill="white"
+                          fontSize="12"
+                          fontWeight="bold"
+                        >
+                          {tech.name}
+                        </text>
+                      </>
+                    );
+                  })()}
                 </g>
               )}
             </g>
@@ -243,18 +256,21 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
         .radar-chart-container {
           position: relative;
           margin: 2rem 0;
-          padding: 1rem;
+          padding: 2rem;
           background: white;
           border-radius: 8px;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
           display: flex;
           justify-content: center;
           align-items: center;
+          overflow: visible;
+          min-height: 750px;
         }
 
         .radar-chart {
           max-width: 100%;
           height: auto;
+          overflow: visible;
         }
 
         .tech-dot {
@@ -292,7 +308,24 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
 
         @media (max-width: 768px) {
           .radar-chart-container {
+            padding: 1rem;
+            min-height: 600px;
+          }
+          
+          .radar-chart {
+            width: 100%;
+            max-width: 500px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .radar-chart-container {
             padding: 0.5rem;
+            min-height: 450px;
+          }
+          
+          .radar-chart {
+            max-width: 400px;
           }
         }
       `}</style>
