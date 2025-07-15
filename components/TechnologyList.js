@@ -9,7 +9,7 @@ export default function TechnologyList({ technologies, dimension, rings }) {
       .sort((a, b) => (b.dimensions[dimension.id] || 0) - (a.dimensions[dimension.id] || 0));
     return acc;
   }, {});
-
+  
   return (
     <div className="technology-list">
       {rings.map(ring => {
