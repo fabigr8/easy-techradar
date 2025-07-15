@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { marked } from 'marked';
 import { getRadarData, getTechnologyDetails, getRingColor, getDimensionColor } from '../../lib/dataLoader';
-import SpiderChart from '../../components/SpiderChart';
+import RadarChart from '../../components/RadarChart';
 
 export default function TechnologyDetail({ technology, radarData }) {
   if (!technology) {
@@ -124,9 +124,9 @@ export default function TechnologyDetail({ technology, radarData }) {
               </div>
             </div>
 
-            <div className="spider-chart-section">
+            <div className="radar-chart-section">
               <h3>Technology Profile</h3>
-              <SpiderChart 
+              <RadarChart 
                 dimensions={radarData.dimensions}
                 technologies={[technology]}
                 selectedTechnology={technology}

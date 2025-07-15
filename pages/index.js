@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { getRadarData } from '../lib/dataLoader';
-import SpiderChart from '../components/SpiderChart';
+import RadarChart from '../components/RadarChart';
 import TechnologyList from '../components/TechnologyList';
 
 export default function Home({ radarData }) {
@@ -95,8 +95,8 @@ export default function Home({ radarData }) {
             </div>
           </div>
 
-          {/* Spider Chart */}
-          <SpiderChart 
+          {/* Radar Chart */}
+          <RadarChart 
             dimensions={radarData.dimensions}
             technologies={filteredTechnologies}
             selectedRing={selectedRing}
