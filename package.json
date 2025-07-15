@@ -1,0 +1,37 @@
+{
+  "name": "technology-radar",
+  "version": "1.0.0",
+  "description": "A customizable technology radar with dynamic dimensions",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "chart.js": "^4.4.0",
+    "react-chartjs-2": "^5.2.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^9.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "technology-radar",
+    "nextjs",
+    "react",
+    "chartjs",
+    "github-pages"
+  ],
+  "license": "MIT"
+}
