@@ -87,8 +87,8 @@
 }
 
 .ringBtn.active {
-  border-color: currentColor;
-  background: currentColor;
+  border-color: #000;
+  background: #000;
   color: white;
 }
 

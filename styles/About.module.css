@@ -95,40 +95,21 @@
   border-radius: 50%;
 }
 
-.ringColor.adopt {
-  background: #588157;
-}
-
-.ringColor.trial {
-  background: #457b9d;
-}
-
-.ringColor.assess {
-  background: #bc6c25;
-}
-
-.ringColor.hold {
-  background: #d62828;
-}
-
-.ringItem {
-  --ring-color: #588157;
-}
-
+/* Ring colors and borders are handled via global classes in the component */
 .ringItem:nth-child(1) {
-  --ring-color: #588157;
+  border-left-color: rgb(87, 207, 128);
 }
 
 .ringItem:nth-child(2) {
-  --ring-color: #457b9d;
+  border-left-color: rgb(1, 112, 173);
 }
 
 .ringItem:nth-child(3) {
-  --ring-color: #bc6c25;
+  border-left-color: rgb(18, 171, 219);
 }
 
 .ringItem:nth-child(4) {
-  --ring-color: #d62828;
+  border-left-color: rgb(168, 66, 224);
 }
 
 .dimensionsList {

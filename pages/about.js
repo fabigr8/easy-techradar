@@ -35,7 +35,7 @@ export default function About() {
             <div className={styles.ringsExplanation}>
               <div className={styles.ringItem}>
                 <div className={styles.ringHeader}>
-                  <div className={`${styles.ringColor} ${styles.adopt}`}></div>
+                  <div className={`${styles.ringColor} bg_color_ring1`}></div>
                   <h3>Adopt</h3>
                 </div>
                 <p>
@@ -47,7 +47,7 @@ export default function About() {
 
               <div className={styles.ringItem}>
                 <div className={styles.ringHeader}>
-                  <div className={`${styles.ringColor} ${styles.trial}`}></div>
+                  <div className={`${styles.ringColor} bg_color_ring2`}></div>
                   <h3>Trial</h3>
                 </div>
                 <p>
@@ -58,7 +58,7 @@ export default function About() {
 
               <div className={styles.ringItem}>
                 <div className={styles.ringHeader}>
-                  <div className={`${styles.ringColor} ${styles.assess}`}></div>
+                  <div className={`${styles.ringColor} bg_color_ring3`}></div>
                   <h3>Assess</h3>
                 </div>
                 <p>
@@ -69,7 +69,7 @@ export default function About() {
 
               <div className={styles.ringItem}>
                 <div className={styles.ringHeader}>
-                  <div className={`${styles.ringColor} ${styles.hold}`}></div>
+                  <div className={`${styles.ringColor} bg_color_ring4`}></div>
                   <h3>Hold</h3>
                 </div>
                 <p>
