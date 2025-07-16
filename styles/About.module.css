@@ -1,0 +1,196 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.breadcrumb {
+  margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+  color: #CCC;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.breadcrumb a:hover {
+  color: #FFF;
+}
+
+.header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #FFF;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  font-size: 1.2rem;
+  color: #CCC;
+}
+
+.content section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #555;
+}
+
+.content section:last-child {
+  border-bottom: none;
+}
+
+.content h2 {
+  color: #FFF;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.content h3 {
+  color: #FFF;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.content p {
+  line-height: 1.6;
+  color: #CCC;
+  margin-bottom: 1rem;
+}
+
+.content ul {
+  line-height: 1.6;
+  color: #CCC;
+}
+
+.ringsExplanation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.ringItem {
+  padding: 1.5rem;
+  background: #373847;
+  border-radius: 8px;
+  border-left: 4px solid var(--ring-color);
+}
+
+.ringHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.ringColor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.ringColor.adopt {
+  background: #588157;
+}
+
+.ringColor.trial {
+  background: #457b9d;
+}
+
+.ringColor.assess {
+  background: #bc6c25;
+}
+
+.ringColor.hold {
+  background: #d62828;
+}
+
+.ringItem {
+  --ring-color: #588157;
+}
+
+.ringItem:nth-child(1) {
+  --ring-color: #588157;
+}
+
+.ringItem:nth-child(2) {
+  --ring-color: #457b9d;
+}
+
+.ringItem:nth-child(3) {
+  --ring-color: #bc6c25;
+}
+
+.ringItem:nth-child(4) {
+  --ring-color: #d62828;
+}
+
+.dimensionsList {
+  margin-top: 1rem;
+}
+
+.dimensionsList li {
+  margin-bottom: 1rem;
+}
+
+.statusIndicators {
+  margin-top: 1.5rem;
+}
+
+.statusItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.indicator {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.indicator.new {
+  background: #d4edda;
+  color: #155724;
+}
+
+.indicator.changed {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.indicator.unchanged {
+  background: #f8f9fa;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .ringsExplanation {
+    grid-template-columns: 1fr;
+  }
+
+  .statusItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}

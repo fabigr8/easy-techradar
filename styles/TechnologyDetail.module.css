@@ -1,0 +1,212 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.breadcrumb {
+  margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+  color: #CCC;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.breadcrumb a:hover {
+  color: #FFF;
+}
+
+.techHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #555;
+}
+
+.techTitleSection {
+  flex: 1;
+}
+
+.techTitle {
+  font-size: 2.5rem;
+  color: #FFF;
+  margin-bottom: 1rem;
+}
+
+.techMeta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ringBadge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.indicator {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.indicator.new {
+  background: #d4edda;
+  color: #155724;
+}
+
+.indicator.changed {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.externalLink {
+  padding: 0.75rem 1.5rem;
+  background: #32B569;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.externalLink:hover {
+  background: #28a745;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+
+.mainContent section {
+  margin-bottom: 2rem;
+}
+
+.mainContent h2 {
+  color: #FFF;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.description,
+.rationale {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #CCC;
+}
+
+.markdownContent {
+  line-height: 1.6;
+  color: #CCC;
+}
+
+.markdownContent h3 {
+  color: #FFF;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.markdownContent p {
+  margin-bottom: 1rem;
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 0.375rem 0.75rem;
+  background: #373847;
+  color: #CCC;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sidebar {
+  background: #373847;
+  padding: 2rem;
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.sidebar h3 {
+  color: #FFF;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.sidebar > div {
+  margin-bottom: 2rem;
+}
+
+.sidebar > div:last-child {
+  margin-bottom: 0;
+}
+
+.primaryDimension {
+  margin-bottom: 2rem;
+}
+
+.dimensionCard {
+  text-align: center;
+}
+
+.dimensionBadge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.dimensionDescription {
+  color: #CCC;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.radarChartSection {
+  height: 400px;
+}
+
+.ringDescription {
+  color: #CCC;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 968px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .techHeader {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .techTitle {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+}

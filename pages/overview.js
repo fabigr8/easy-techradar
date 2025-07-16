@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { getRadarData } from '../lib/dataLoader';
+import styles from '../styles/Overview.module.css';
 
 export default function Overview({ radarData }) {
   const [sortBy, setSortBy] = useState('name');
@@ -45,9 +46,9 @@ export default function Overview({ radarData }) {
         <meta name="description" content="Complete overview of all technologies in our radar" />
       </Head>
 
-      <div className="container">
-        <header className="header">
-          <nav className="breadcrumb">
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <nav className={styles.breadcrumb}>
             <Link href="/">← Back to Radar</Link>
           </nav>
           
@@ -56,19 +57,19 @@ export default function Overview({ radarData }) {
         </header>
 
         {/* Filters and Search */}
-        <div className="controls">
-          <div className="search-section">
+        <div className={styles.controls}>
+          <div className={styles.searchSection}>
             <input
               type="text"
               placeholder="Search technologies or tags..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
+              className={styles.searchInput}
             />
           </div>
 
-          <div className="filters">
-            <div className="filter-group">
+          <div className={styles.filters}>
+            <div className={styles.filterGroup}>
               <label>Sort by:</label>
               <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
                 <option value="name">Name</option>
@@ -78,7 +79,7 @@ export default function Overview({ radarData }) {
               </select>
             </div>
 
-            <div className="filter-group">
+            <div className={styles.filterGroup}>
               <label>Filter by Ring:</label>
               <select value={filterRing} onChange={(e) => setFilterRing(e.target.value)}>
                 <option value="">All Rings</option>
@@ -88,7 +89,7 @@ export default function Overview({ radarData }) {
               </select>
             </div>
 
-            <div className="filter-group">
+            <div className={styles.filterGroup}>
               <label>Filter by Dimension:</label>
               <select value={filterDimension} onChange={(e) => setFilterDimension(e.target.value)}>
                 <option value="">All Dimensions</option>
@@ -101,13 +102,13 @@ export default function Overview({ radarData }) {
         </div>
 
         {/* Results Summary */}
-        <div className="results-summary">
+        <div className={styles.resultsSummary}>
           <p>Showing {filteredTechnologies.length} of {radarData.technologies.length} technologies</p>
         </div>
 
         {/* Technologies Table */}
-        <div className="table-container">
-          <table className="technologies-table">
+        <div className={styles.tableContainer}>
+          <table className={styles.technologiesTable}>
             <thead>
               <tr>
                 <th>Technology</th>
@@ -124,17 +125,17 @@ export default function Overview({ radarData }) {
                 const dimension = getDimensionInfo(tech.dimension);
 
                 return (
-                  <tr key={tech.id} className="tech-row">
-                    <td className="tech-name-cell">
-                      <div className="tech-name-container">
-                        <strong className="tech-name">{tech.name}</strong>
-                        <p className="tech-description">{tech.description}</p>
+                  <tr key={tech.id} className={styles.techRow}>
+                    <td className={styles.techNameCell}>
+                      <div className={styles.techNameContainer}>
+                        <strong className={styles.techName}>{tech.name}</strong>
+                        <p className={styles.techDescription}>{tech.description}</p>
                       </div>
                     </td>
                     
-                    <td className="ring-cell">
+                    <td className={styles.ringCell}>
                       <span 
-                        className="ring-badge"
+                        className={styles.ringBadge}
                         style={{ 
                           backgroundColor: ring?.color,
                           color: 'white'
@@ -144,11 +145,11 @@ export default function Overview({ radarData }) {
                       </span>
                     </td>
                     
-                    <td className="dimensions-cell">
-                      <div className="dimension-score">
-                        <span className="dimension-name">{dimension?.name}</span>
+                    <td className={styles.dimensionsCell}>
+                      <div className={styles.dimensionScore}>
+                        <span className={styles.dimensionName}>{dimension?.name}</span>
                         <span 
-                          className="dimension-badge"
+                          className={styles.dimensionBadge}
                           style={{ backgroundColor: dimension?.color, color: 'white' }}
                         >
                           {dimension?.name}
@@ -156,36 +157,36 @@ export default function Overview({ radarData }) {
                       </div>
                     </td>
                     
-                    <td className="tags-cell">
-                      <div className="tags-container">
+                    <td className={styles.tagsCell}>
+                      <div className={styles.tagsContainer}>
                         {tech.tags.slice(0, 3).map(tag => (
-                          <span key={tag} className="tag">{tag}</span>
+                          <span key={tag} className={styles.tag}>{tag}</span>
                         ))}
                         {tech.tags.length > 3 && (
-                          <span className="tag overflow">+{tech.tags.length - 3}</span>
+                          <span className={`${styles.tag} ${styles.overflow}`}>+{tech.tags.length - 3}</span>
                         )}
                       </div>
                     </td>
                     
-                    <td className="status-cell">
-                      <div className="status-indicators">
+                    <td className={styles.statusCell}>
+                      <div className={styles.statusIndicators}>
                         {tech.isNew && (
-                          <span className="indicator new">NEW</span>
+                          <span className={`${styles.indicator} ${styles.new}`}>NEW</span>
                         )}
                         {tech.hasChanged && (
-                          <span className="indicator changed">CHANGED</span>
+                          <span className={`${styles.indicator} ${styles.changed}`}>CHANGED</span>
                         )}
                         {!tech.isNew && !tech.hasChanged && (
-                          <span className="indicator unchanged">UNCHANGED</span>
+                          <span className={`${styles.indicator} ${styles.unchanged}`}>UNCHANGED</span>
                         )}
                       </div>
                     </td>
                     
-                    <td className="actions-cell">
-                      <div className="actions">
+                    <td className={styles.actionsCell}>
+                      <div className={styles.actions}>
                         <Link 
                           href={`/technologies/${tech.id}`}
-                          className="action-btn view-btn"
+                          className={`${styles.actionBtn} ${styles.viewBtn}`}
                         >
                           View Details
                         </Link>
@@ -194,7 +195,7 @@ export default function Overview({ radarData }) {
                             href={tech.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="action-btn external-btn"
+                            className={`${styles.actionBtn} ${styles.externalBtn}`}
                           >
                             Website ↗
                           </a>
@@ -209,7 +210,7 @@ export default function Overview({ radarData }) {
         </div>
 
         {filteredTechnologies.length === 0 && (
-          <div className="no-results">
+          <div className={styles.noResults}>
             <p>No technologies found matching your criteria.</p>
             <button 
               onClick={() => {
@@ -217,339 +218,13 @@ export default function Overview({ radarData }) {
                 setFilterRing('');
                 setFilterDimension('');
               }}
-              className="reset-btn"
+              className={styles.resetBtn}
             >
               Clear Filters
             </button>
           </div>
         )}
       </div>
-
-      <style jsx global>{`
-        body {
-          background: #0A0A0E;
-          margin: 0;
-          padding: 0;
-        }
-      `}</style>
-      <style jsx>{`
-        .container {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 2rem;
-          background: #0A0A0E;
-          font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        .header {
-          margin-bottom: 2rem;
-        }
-
-        .breadcrumb {
-          margin-bottom: 1rem;
-        }
-
-        .breadcrumb a {
-          color: #666;
-          text-decoration: none;
-          font-size: 0.9rem;
-        }
-
-        .breadcrumb a:hover {
-          color: #333;
-        }
-
-        .header h1 {
-          font-size: 2.5rem;
-          color: #333;
-          margin-bottom: 0.5rem;
-        }
-
-        .header p {
-          color: #666;
-          font-size: 1.1rem;
-        }
-
-        .controls {
-          background: #f8f9fa;
-          padding: 1.5rem;
-          border-radius: 8px;
-          margin-bottom: 2rem;
-        }
-
-        .search-section {
-          margin-bottom: 1rem;
-        }
-
-        .search-input {
-          width: 100%;
-          max-width: 400px;
-          padding: 0.75rem;
-          border: 2px solid #ddd;
-          border-radius: 6px;
-          font-size: 1rem;
-        }
-
-        .search-input:focus {
-          outline: none;
-          border-color: #7CB518;
-        }
-
-        .filters {
-          display: flex;
-          gap: 1rem;
-          flex-wrap: wrap;
-        }
-
-        .filter-group {
-          display: flex;
-          flex-direction: column;
-          gap: 0.25rem;
-        }
-
-        .filter-group label {
-          font-size: 0.9rem;
-          font-weight: 500;
-          color: #555;
-        }
-
-        .filter-group select {
-          padding: 0.5rem;
-          border: 2px solid #ddd;
-          border-radius: 4px;
-          background: white;
-        }
-
-        .results-summary {
-          margin-bottom: 1rem;
-          color: #666;
-          font-size: 0.9rem;
-        }
-
-        .table-container {
-          background: white;
-          border-radius: 8px;
-          box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
-          overflow: hidden;
-          overflow-x: auto;
-        }
-
-        .technologies-table {
-          width: 100%;
-          border-collapse: collapse;
-          min-width: 800px;
-        }
-
-        .technologies-table th {
-          background: #0A0A0E;
-          padding: 1rem;
-          text-align: left;
-          font-weight: 600;
-          color: #333;
-          border-bottom: 2px solid #0A0A0E;
-        }
-
-        .technologies-table td {
-          padding: 1rem;
-          border-bottom: 1px solid #0A0A0E;
-          vertical-align: top;
-        }
-
-        .tech-row:hover {
-          background: #0A0A0E;
-        }
-
-        .tech-name-container {
-          max-width: 300px;
-        }
-
-        .tech-name {
-          color: #FFF;
-          display: block;
-          margin-bottom: 0.25rem;
-        }
-
-        .tech-description {
-          color: #CCC;
-          font-size: 0.9rem;
-          margin: 0;
-          line-height: 1.4;
-        }
-
-        .ring-badge {
-          padding: 0.375rem 0.75rem;
-          border-radius: 20px;
-          font-size: 0.8rem;
-          font-weight: 600;
-          white-space: nowrap;
-        }
-
-        .dimensions-list {
-          display: flex;
-          flex-direction: column;
-          gap: 0.25rem;
-        }
-
-        .dimension-score {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 0.85rem;
-        }
-
-        .dimension-name {
-          color: #CCC;
-          min-width: 80px;
-        }
-
-        .dimension-badge {
-          color: white;
-          padding: 0.125rem 0.5rem;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 600;
-          text-align: center;
-        }
-
-        .show-all-btn {
-          background: #e9ecef;
-          border: none;
-          padding: 0.125rem 0.375rem;
-          border-radius: 10px;
-          font-size: 0.75rem;
-          color: #CCC;
-          cursor: pointer;
-          margin-top: 0.25rem;
-        }
-
-        .tags-container {
-          display: flex;
-          gap: 0.25rem;
-          flex-wrap: wrap;
-        }
-
-        .tag {
-          padding: 0.25rem 0.5rem;
-          background: #e9ecef;
-          color: #495057;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 500;
-          white-space: nowrap;
-        }
-
-        .tag.overflow {
-          background: #dee2e6;
-          color: #6c757d;
-        }
-
-        .status-indicators {
-          display: flex;
-          flex-direction: column;
-          gap: 0.25rem;
-        }
-
-        .indicator {
-          padding: 0.25rem 0.5rem;
-          border-radius: 12px;
-          font-size: 0.7rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          text-align: center;
-          white-space: nowrap;
-        }
-
-        .indicator.new {
-          background: #d4edda;
-          color: #155724;
-        }
-
-        .indicator.changed {
-          background: #fff3cd;
-          color: #856404;
-        }
-
-        .indicator.unchanged {
-          background: #f8f9fa;
-          color: #6c757d;
-        }
-
-        .actions {
-          display: flex;
-          flex-direction: column;
-          gap: 0.25rem;
-        }
-
-        .action-btn {
-          padding: 0.375rem 0.75rem;
-          border-radius: 4px;
-          text-decoration: none;
-          font-size: 0.8rem;
-          font-weight: 500;
-          text-align: center;
-          white-space: nowrap;
-          transition: all 0.2s;
-        }
-
-        .view-btn {
-          background: #007bff;
-          color: white;
-        }
-
-        .view-btn:hover {
-          background: #0056b3;
-        }
-
-        .external-btn {
-          background: #6c757d;
-          color: white;
-        }
-
-        .external-btn:hover {
-          background: #545b62;
-        }
-
-        .no-results {
-          text-align: center;
-          padding: 3rem;
-          color: #666;
-        }
-
-        .reset-btn {
-          margin-top: 1rem;
-          padding: 0.75rem 1.5rem;
-          background: #7CB518;
-          color: white;
-          border: none;
-          border-radius: 6px;
-          cursor: pointer;
-          font-weight: 500;
-        }
-
-        .reset-btn:hover {
-          background: #6a9c15;
-        }
-
-        @media (max-width: 768px) {
-          .container {
-            padding: 1rem;
-          }
-
-          .filters {
-            flex-direction: column;
-          }
-
-          .header h1 {
-            font-size: 2rem;
-          }
-
-          .table-container {
-            margin: 0 -1rem;
-            border-radius: 0;
-          }
-        }
-      `}</style>
     </>
   );
 }

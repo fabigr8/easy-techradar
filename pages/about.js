@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import styles from '../styles/About.module.css';
 
 export default function About() {
   return (
@@ -9,17 +10,17 @@ export default function About() {
         <meta name="description" content="Learn how to use and interpret our Technology Radar" />
       </Head>
 
-      <div className="container">
-        <nav className="breadcrumb">
+      <div className={styles.container}>
+        <nav className={styles.breadcrumb}>
           <Link href="/">← Back to Radar</Link>
         </nav>
 
-        <header>
+        <header className={styles.header}>
           <h1>How to use the Technology Radar</h1>
           <p>Understanding our assessment methodology and what each ring means.</p>
         </header>
 
-        <main className="content">
+        <main className={styles.content}>
           <section>
             <h2>What is the Technology Radar?</h2>
             <p>
@@ -31,10 +32,10 @@ export default function About() {
 
           <section>
             <h2>The Rings</h2>
-            <div className="rings-explanation">
-              <div className="ring-item">
-                <div className="ring-header">
-                  <div className="ring-color adopt"></div>
+            <div className={styles.ringsExplanation}>
+              <div className={styles.ringItem}>
+                <div className={styles.ringHeader}>
+                  <div className={`${styles.ringColor} ${styles.adopt}`}></div>
                   <h3>Adopt</h3>
                 </div>
                 <p>
@@ -44,9 +45,9 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="ring-item">
-                <div className="ring-header">
-                  <div className="ring-color trial"></div>
+              <div className={styles.ringItem}>
+                <div className={styles.ringHeader}>
+                  <div className={`${styles.ringColor} ${styles.trial}`}></div>
                   <h3>Trial</h3>
                 </div>
                 <p>
@@ -55,9 +56,9 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="ring-item">
-                <div className="ring-header">
-                  <div className="ring-color assess"></div>
+              <div className={styles.ringItem}>
+                <div className={styles.ringHeader}>
+                  <div className={`${styles.ringColor} ${styles.assess}`}></div>
                   <h3>Assess</h3>
                 </div>
                 <p>
@@ -66,9 +67,9 @@ export default function About() {
                 </p>
               </div>
 
-              <div className="ring-item">
-                <div className="ring-header">
-                  <div className="ring-color hold"></div>
+              <div className={styles.ringItem}>
+                <div className={styles.ringHeader}>
+                  <div className={`${styles.ringColor} ${styles.hold}`}></div>
                   <h3>Hold</h3>
                 </div>
                 <p>
@@ -85,7 +86,7 @@ export default function About() {
               Our radar is organized into dimensions that represent different aspects of 
               technology adoption. Each technology belongs to one primary dimension:
             </p>
-            <ul className="dimensions-list">
+            <ul className={styles.dimensionsList}>
               <li>
                 <strong>Languages & Frameworks:</strong> Programming languages and essential 
                 frameworks for building custom software.
@@ -107,17 +108,17 @@ export default function About() {
 
           <section>
             <h2>Status Indicators</h2>
-            <div className="status-indicators">
-              <div className="status-item">
-                <span className="indicator new">NEW</span>
+            <div className={styles.statusIndicators}>
+              <div className={styles.statusItem}>
+                <span className={`${styles.indicator} ${styles.new}`}>NEW</span>
                 <span>New in this version of the radar</span>
               </div>
-              <div className="status-item">
-                <span className="indicator changed">CHANGED</span>
+              <div className={styles.statusItem}>
+                <span className={`${styles.indicator} ${styles.changed}`}>CHANGED</span>
                 <span>Recently moved to a different ring</span>
               </div>
-              <div className="status-item">
-                <span className="indicator unchanged">UNCHANGED</span>
+              <div className={styles.statusItem}>
+                <span className={`${styles.indicator} ${styles.unchanged}`}>UNCHANGED</span>
                 <span>No change since last version</span>
               </div>
             </div>
@@ -156,212 +157,6 @@ export default function About() {
           </section>
         </main>
       </div>
-
-      <style jsx global>{`
-        body {
-          background: #0A0A0E;
-          margin: 0;
-          padding: 0;
-        }
-      `}</style>
-      <style jsx>{`
-        .container {
-          max-width: 900px;
-          margin: 0 auto;
-          padding: 2rem;
-          font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        .breadcrumb {
-          margin-bottom: 2rem;
-        }
-
-        .breadcrumb a {
-          color: #666;
-          text-decoration: none;
-          font-size: 0.9rem;
-        }
-
-        .breadcrumb a:hover {
-          color: #333;
-        }
-
-        header {
-          margin-bottom: 3rem;
-          text-align: center;
-        }
-
-        header h1 {
-          font-size: 2.5rem;
-          color: #333;
-          margin-bottom: 0.5rem;
-        }
-
-        header p {
-          font-size: 1.2rem;
-          color: #666;
-        }
-
-        .content section {
-          margin-bottom: 3rem;
-          padding-bottom: 2rem;
-          border-bottom: 1px solid #eee;
-        }
-
-        .content section:last-child {
-          border-bottom: none;
-        }
-
-        h2 {
-          color: #333;
-          font-size: 1.8rem;
-          margin-bottom: 1rem;
-        }
-
-        h3 {
-          color: #333;
-          font-size: 1.3rem;
-          margin-bottom: 0.5rem;
-        }
-
-        p {
-          line-height: 1.6;
-          color: #555;
-          margin-bottom: 1rem;
-        }
-
-        ul {
-          line-height: 1.6;
-          color: #555;
-        }
-
-        .rings-explanation {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 2rem;
-          margin-top: 1.5rem;
-        }
-
-        .ring-item {
-          padding: 1.5rem;
-          background: #f8f9fa;
-          border-radius: 8px;
-          border-left: 4px solid var(--ring-color);
-        }
-
-        .ring-header {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          margin-bottom: 1rem;
-        }
-
-        .ring-color {
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-        }
-
-        .ring-color.adopt {
-          background: #588157;
-        }
-
-        .ring-color.trial {
-          background: #457b9d;
-        }
-
-        .ring-color.assess {
-          background: #bc6c25;
-        }
-
-        .ring-color.hold {
-          background: #d62828;
-        }
-
-        .ring-item {
-          --ring-color: #588157;
-        }
-
-        .ring-item:nth-child(1) {
-          --ring-color: #588157;
-        }
-
-        .ring-item:nth-child(2) {
-          --ring-color: #457b9d;
-        }
-
-        .ring-item:nth-child(3) {
-          --ring-color: #bc6c25;
-        }
-
-        .ring-item:nth-child(4) {
-          --ring-color: #d62828;
-        }
-
-        .dimensions-list {
-          margin-top: 1rem;
-        }
-
-        .dimensions-list li {
-          margin-bottom: 1rem;
-        }
-
-        .status-indicators {
-          margin-top: 1.5rem;
-        }
-
-        .status-item {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          margin-bottom: 1rem;
-        }
-
-        .indicator {
-          padding: 0.25rem 0.5rem;
-          border-radius: 12px;
-          font-size: 0.7rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          white-space: nowrap;
-        }
-
-        .indicator.new {
-          background: #d4edda;
-          color: #155724;
-        }
-
-        .indicator.changed {
-          background: #fff3cd;
-          color: #856404;
-        }
-
-        .indicator.unchanged {
-          background: #f8f9fa;
-          color: #6c757d;
-        }
-
-        @media (max-width: 768px) {
-          .container {
-            padding: 1rem;
-          }
-
-          header h1 {
-            font-size: 2rem;
-          }
-
-          .rings-explanation {
-            grid-template-columns: 1fr;
-          }
-
-          .status-item {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
-          }
-        }
-      `}</style>
     </>
   );
 }

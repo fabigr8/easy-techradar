@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getRadarData } from '../lib/dataLoader';
 import RadarChart from '../components/RadarChart';
 import TechnologyList from '../components/TechnologyList';
+import styles from '../styles/Home.module.css';
 
 export default function Home({ radarData }) {
   const [selectedRing, setSelectedRing] = useState(null);
@@ -36,19 +37,19 @@ export default function Home({ radarData }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="container">
-        <header className="header">
-          <h1>
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <h1 className={styles.headerTitle}>
             {radarData.title}{' '}
-            <span className="version">Version #{radarData.version}</span>
+            <span className={styles.version}>Version #{radarData.version}</span>
           </h1>
-          <p className="description">{radarData.description}</p>
+          <p className={styles.description}>{radarData.description}</p>
           
-          <nav className="nav">
-            <Link href="/overview" className="nav-link">
+          <nav className={styles.nav}>
+            <Link href="/overview" className={styles.navLink}>
               📊 Technologies Overview
             </Link>
-            <Link href="/about" className="nav-link">
+            <Link href="/about" className={styles.navLink}>
               ❓ How to use this Radar
             </Link>
           </nav>
@@ -56,12 +57,12 @@ export default function Home({ radarData }) {
 
         <main>
           {/* Controls */}
-          <div className="controls">
-            <div className="control-group">
+          <div className={styles.controls}>
+            <div className={styles.controlGroup}>
               <h3>Filter by Ring</h3>
-              <div className="ring-filters">
+              <div className={styles.ringFilters}>
                 <button 
-                  className={`ring-btn ${!selectedRing ? 'active' : ''}`}
+                  className={`${styles.ringBtn} ${!selectedRing ? styles.active : ''}`}
                   onClick={() => setSelectedRing(null)}
                 >
                   All
@@ -69,7 +70,7 @@ export default function Home({ radarData }) {
                 {radarData.rings.map(ring => (
                   <button
                     key={ring.id}
-                    className={`ring-btn ${selectedRing === ring.id ? 'active' : ''}`}
+                    className={`${styles.ringBtn} ${selectedRing === ring.id ? styles.active : ''}`}
                     style={{ '--ring-color': ring.color }}
                     onClick={() => setSelectedRing(ring.id)}
                   >
@@ -79,13 +80,13 @@ export default function Home({ radarData }) {
               </div>
             </div>
 
-            <div className="control-group">
+            <div className={styles.controlGroup}>
               <h3>Filter by Tags</h3>
-              <div className="tag-filters">
+              <div className={styles.tagFilters}>
                 {allTags.map(tag => (
                   <button
                     key={tag}
-                    className={`tag-btn ${selectedTags.includes(tag) ? 'active' : ''}`}
+                    className={`${styles.tagBtn} ${selectedTags.includes(tag) ? styles.active : ''}`}
                     onClick={() => toggleTag(tag)}
                   >
                     {tag}
@@ -103,13 +104,13 @@ export default function Home({ radarData }) {
           />
 
           {/* Legend */}
-          <div className="legend">
+          <div className={styles.legend}>
             <h3>Rings</h3>
-            <div className="legend-items">
+            <div className={styles.legendItems}>
               {radarData.rings.map(ring => (
-                <div key={ring.id} className="legend-item">
+                <div key={ring.id} className={styles.legendItem}>
                   <div 
-                    className="legend-color"
+                    className={styles.legendColor}
                     style={{ backgroundColor: ring.color }}
                   ></div>
                   <div>
@@ -122,11 +123,11 @@ export default function Home({ radarData }) {
           </div>
 
           {/* Technology Lists by Dimension */}
-          <div className="dimensions-grid">
+          <div className={styles.dimensionsGrid}>
             {radarData.dimensions.map(dimension => (
-              <div key={dimension.id} className="dimension-section">
+              <div key={dimension.id} className={styles.dimensionSection}>
                 <h3 style={{ color: dimension.color }}>{dimension.name}</h3>
-                <p className="dimension-description">{dimension.description}</p>
+                <p className={styles.dimensionDescription}>{dimension.description}</p>
                 <TechnologyList 
                   technologies={filteredTechnologies.filter(tech => 
                     tech.dimension === dimension.id
@@ -139,212 +140,6 @@ export default function Home({ radarData }) {
           </div>
         </main>
       </div>
-
-      <style jsx global>{`
-        body {
-          background: #0A0A0E;
-          margin: 0;
-          padding: 0;
-        }
-      `}</style>
-      <style jsx>{`
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 2rem;
-          background: #0A0A0E;
-          font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        .header {
-          text-align: center;
-          margin-bottom: 3rem;
-        }
-
-        .header h1 {
-          font-size: 2.5rem;
-          color: #FFF;
-          margin-bottom: 0.5rem;
-        }
-
-        .version {
-          color: #32B569;
-          font-weight: normal;
-        }
-
-        .description {
-          font-size: 1.2rem;
-          color: #CCC;
-          margin-bottom: 2rem;
-        }
-
-        .nav {
-          display: flex;
-          gap: 1rem;
-          justify-content: center;
-        }
-
-        .nav-link {
-          padding: 0.5rem 1rem;
-          background: #373847;
-          border-radius: 6px;
-          text-decoration: none;
-          color: #FFF;
-          transition: background 0.2s;
-        }
-
-        .nav-link:hover {
-          background: #32B569;
-        }
-
-        .controls {
-          margin-bottom: 2rem;
-          padding: 1.5rem;
-          background: #373847;
-          border-radius: 8px;
-        }
-
-        .control-group {
-          margin-bottom: 1.5rem;
-        }
-
-        .control-group:last-child {
-          margin-bottom: 0;
-        }
-
-        .control-group h3 {
-          margin-bottom: 0.5rem;
-          color: #FFF;
-        }
-
-        .ring-filters, .tag-filters {
-          display: flex;
-          gap: 0.5rem;
-          flex-wrap: wrap;
-        }
-
-        .ring-btn, .tag-btn {
-          padding: 0.5rem 1rem;
-          border: 2px solid #555;
-          background: #272936;
-          color: #FFF;
-          border-radius: 20px;
-          cursor: pointer;
-          transition: all 0.2s;
-          font-size: 0.9rem;
-        }
-
-        .ring-btn.active {
-          border-color: var(--ring-color, #32B569);
-          background: var(--ring-color, #32B569);
-          color: white;
-        }
-
-        .tag-btn.active {
-          border-color: #32B569;
-          background: #32B569;
-          color: white;
-        }
-
-        .ring-btn:hover, .tag-btn:hover {
-          border-color: #32B569;
-        }
-
-        .legend {
-          margin: 2rem 0;
-          padding: 1.5rem;
-          background: #373847;
-          border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .legend h3 {
-          margin-bottom: 1rem;
-          color: #FFF;
-        }
-
-        .legend-items {
-          display: grid;
-          grid-template-columns: repeat(2, 2fr);
-          gap: 1rem;
-        }
-
-        .legend-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 1rem;
-        }
-
-        .legend-color {
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          flex-shrink: 0;
-          margin-top: 2px;
-        }
-
-        .legend-item strong {
-          color: #FFF;
-          display: block;
-          margin-bottom: 0.25rem;
-        }
-
-        .legend-item p {
-          color: #CCC;
-          font-size: 0.9rem;
-          margin: 0;
-        }
-
-        .dimensions-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          grid-template-rows: repeat(2, 1fr);
-          gap: 2rem;
-          margin-top: 3rem;
-        }
-
-        .dimension-section {
-          padding: 1.5rem;
-          background: #373847;
-          border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .dimension-section h3 {
-          margin-bottom: 0.5rem;
-          font-size: 1.3rem;
-          color: #FFF;
-        }
-
-        .dimension-description {
-          color: #CCC;
-          font-size: 0.9rem;
-          margin-bottom: 1rem;
-        }
-
-        @media (max-width: 768px) {
-          .container {
-            padding: 1rem;
-          }
-
-          .header h1 {
-            font-size: 2rem;
-          }
-
-          .nav {
-            flex-direction: column;
-            align-items: center;
-          }
-
-          .legend-items {
-            grid-template-columns: 1fr;
-          }
-
-          .dimensions-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
     </>
   );
 }
