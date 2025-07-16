@@ -21,7 +21,7 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
     const angleStep = (2 * Math.PI) / dimensions.length;
     
     for (let i = 0; i < dimensions.length; i++) {
-      const angle = i * angleStep - Math.PI / 2;
+      const angle = i * angleStep - Math.PI / 2; // Start from top
       vertices.push({
         x: center + Math.cos(angle) * radius,
         y: center + Math.sin(angle) * radius
@@ -42,7 +42,24 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
     return path;
   };
 
-  // Calculate positions for each technology (stable positions)
+  // Calculate edge midpoints for dimension labels
+  const getEdgeMidpoints = (radius) => {
+    const vertices = getPolygonVertices(radius);
+    const midpoints = [];
+    
+    for (let i = 0; i < vertices.length; i++) {
+      const current = vertices[i];
+      const next = vertices[(i + 1) % vertices.length];
+      
+      midpoints.push({
+        x: (current.x + next.x) / 2,
+        y: (current.y + next.y) / 2
+      });
+    }
+    return midpoints;
+  };
+
+  // Calculate positions for each technology
   const getTechPosition = (tech) => {
     const ringOrder = ['adopt', 'trial', 'assess', 'hold'];
     const ringIndex = ringOrder.indexOf(tech.ring);
@@ -51,13 +68,18 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
     // Find the dimension this technology belongs to
     const dimensionIndex = dimensions.findIndex(d => d.id === tech.dimension);
     const angleStep = (2 * Math.PI) / dimensions.length;
-    const angle = dimensionIndex * angleStep - Math.PI / 2;
     
-    // Use tech.id to create consistent but pseudo-random positioning
+    // The key fix: Calculate the edge midpoint angle for this dimension
+    // Each edge is between vertex i and vertex i+1, so edge i has midpoint at angle i + 0.5
+    const edgeMidpointAngle = (dimensionIndex + 0.5) * angleStep - Math.PI / 2;
+    
+    // Use tech.id to create consistent but pseudo-random positioning within the edge sector
     const seed = tech.id.split('').reduce((a, b) => a + b.charCodeAt(0), 0);
-    const sectorWidth = angleStep * 0.8; // 80% of sector width to avoid overlap
+    const sectorWidth = angleStep * 0.6; // 60% of sector width to avoid overlap with adjacent edges
     const randomRadius = ringRadius * (0.7 + (seed % 100) / 100 * 0.3); // 70-100% of ring radius
-    const randomAngle = angle + ((seed % 200) / 200 - 0.5) * sectorWidth;
+    
+    // Position around the edge midpoint angle with some random spread
+    const randomAngle = edgeMidpointAngle + ((seed % 200) / 200 - 0.5) * sectorWidth;
     
     return {
       x: center + Math.cos(randomAngle) * randomRadius,
@@ -101,7 +123,7 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
           );
         })}
         
-        {/* Dimension lines from center to vertices */}
+        {/* Dimension separator lines from center to vertices (these define the edge sector boundaries) */}
         {dimensions.map((dimension, index) => {
           const angleStep = (2 * Math.PI) / dimensions.length;
           const angle = index * angleStep - Math.PI / 2;
@@ -111,50 +133,45 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
           };
           
           return (
-            <g key={dimension.id}>
-              <line
-                x1={center}
-                y1={center}
-                x2={outerVertex.x}
-                y2={outerVertex.y}
-                stroke="#555"
-                strokeWidth="1"
-              />
-              <text
-                x={center + Math.cos(angle) * (maxRadius + 35)}
-                y={center + Math.sin(angle) * (maxRadius + 35)}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fill="#FFF"
-                fontSize="13"
-                fontWeight="bold"
-              >
-                {dimension.name}
-              </text>
-            </g>
+            <line
+              key={dimension.id}
+              x1={center}
+              y1={center}
+              x2={outerVertex.x}
+              y2={outerVertex.y}
+              stroke="#555"
+              strokeWidth="1"
+            />
           );
         })}
         
-        {/* Sector separator lines (optional - makes sectors more visible) */}
+        {/* Dimension labels positioned at edge midpoints */}
         {dimensions.map((dimension, index) => {
-          const angleStep = (2 * Math.PI) / dimensions.length;
-          const angle = (index + 0.5) * angleStep - Math.PI / 2;
-          const outerPoint = {
-            x: center + Math.cos(angle) * maxRadius,
-            y: center + Math.sin(angle) * maxRadius
-          };
+          const edgeMidpoints = getEdgeMidpoints(maxRadius);
+          const midpoint = edgeMidpoints[index];
+          
+          // Calculate direction from center to midpoint for label positioning
+          const dx = midpoint.x - center;
+          const dy = midpoint.y - center;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const labelOffset = 35;
+          
+          const labelX = midpoint.x + (dx / distance) * labelOffset;
+          const labelY = midpoint.y + (dy / distance) * labelOffset;
           
           return (
-            <line
-              key={`separator-${index}`}
-              x1={center}
-              y1={center}
-              x2={outerPoint.x}
-              y2={outerPoint.y}
-              stroke="#444"
-              strokeWidth="1"
-              strokeDasharray="5,5"
-            />
+            <text
+              key={`label-${dimension.id}`}
+              x={labelX}
+              y={labelY}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fill="#FFF"
+              fontSize="14"
+              fontWeight="bold"
+            >
+              {dimension.name}
+            </text>
           );
         })}
         
