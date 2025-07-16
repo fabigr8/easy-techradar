@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { getRingColor, getDimensionColor } from '../lib/colorUtils';
 import styles from './RadarChart.module.css';
 
 export default function RadarChart({ dimensions, technologies, selectedRing = null }) {
@@ -71,12 +72,12 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
     position: getTechPosition(tech)
   }));
 
-  // Get ring colors from your data
+  // Get ring colors from new color scheme
   const ringColors = {
-    adopt: '#32B569',
-    trial: '#12ABDB', 
-    assess: '#0070AD',
-    hold: '#A842E0'
+    adopt: getRingColor(0),
+    trial: getRingColor(1), 
+    assess: getRingColor(2),
+    hold: getRingColor(3)
   };
 
   return (
@@ -242,12 +243,12 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
       {/* Ring labels */}
       <div className={styles.ringLabels}>
         {[
-          { id: 'adopt', name: 'Adopt', color: '#32B569' },
-          { id: 'trial', name: 'Trial', color: '#12ABDB' },
-          { id: 'assess', name: 'Assess', color: '#0070AD' },
-          { id: 'hold', name: 'Hold', color: '#A842E0' }
+          { id: 'adopt', name: 'Adopt', colorIndex: 0 },
+          { id: 'trial', name: 'Trial', colorIndex: 1 },
+          { id: 'assess', name: 'Assess', colorIndex: 2 },
+          { id: 'hold', name: 'Hold', colorIndex: 3 }
         ].map(ring => (
-          <div key={ring.id} className={styles.ringLabel} style={{ color: ring.color }}>
+          <div key={ring.id} className={styles.ringLabel} style={{ color: getRingColor(ring.colorIndex) }}>
             {ring.name}
           </div>
         ))}

@@ -87,20 +87,41 @@
 }
 
 .ringBtn.active {
-  border-color: var(--ring-color, #32B569);
-  background: var(--ring-color, #32B569);
+  border-color: currentColor;
+  background: currentColor;
   color: white;
 }
 
+/* Ring button active colors based on data attributes */
+.ringBtn[data-ring-color="1"].active {
+  border-color: rgb(87, 207, 128);
+  background: rgb(87, 207, 128);
+}
+
+.ringBtn[data-ring-color="2"].active {
+  border-color: rgb(1, 112, 173);
+  background: rgb(1, 112, 173);
+}
+
+.ringBtn[data-ring-color="3"].active {
+  border-color: rgb(18, 171, 219);
+  background: rgb(18, 171, 219);
+}
+
+.ringBtn[data-ring-color="4"].active {
+  border-color: rgb(168, 66, 224);
+  background: rgb(168, 66, 224);
+}
+
 .tagBtn.active {
-  border-color: #32B569;
-  background: #32B569;
+  border-color: rgb(87, 207, 128);
+  background: rgb(87, 207, 128);
   color: white;
 }
 
 .ringBtn:hover,
 .tagBtn:hover {
-  border-color: #32B569;
+  border-color: rgb(87, 207, 128);
 }
 
 .legend {

@@ -67,7 +67,8 @@
 
 .techItem:hover {
   background: #373847;
-  border-left-color: var(--dimension-color, #32B569);
+  border-left-width: 3px;
+  border-left-style: solid;
   transform: translateX(2px);
 }
 

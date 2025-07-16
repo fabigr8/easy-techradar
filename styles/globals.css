@@ -72,3 +72,38 @@ input:focus, select:focus, button:focus {
   background: transparent;
   color: #FFF;
 }
+
+/* Color Schema - Dimensions */
+.color_dim1 { color: rgb(0, 244, 203) !important; }
+.color_dim2 { color: rgb(0, 178, 162) !important; }
+.color_dim3 { color: rgb(15, 135, 138) !important; }
+.color_dim4 { color: rgb(15, 106, 115) !important; }
+.color_dim5 { color: rgb(15, 67, 74) !important; }
+
+.bg_color_dim1 { background-color: rgb(0, 244, 203) !important; }
+.bg_color_dim2 { background-color: rgb(0, 178, 162) !important; }
+.bg_color_dim3 { background-color: rgb(15, 135, 138) !important; }
+.bg_color_dim4 { background-color: rgb(15, 106, 115) !important; }
+.bg_color_dim5 { background-color: rgb(15, 67, 74) !important; }
+
+.border_color_dim1 { border-color: rgb(0, 244, 203) !important; }
+.border_color_dim2 { border-color: rgb(0, 178, 162) !important; }
+.border_color_dim3 { border-color: rgb(15, 135, 138) !important; }
+.border_color_dim4 { border-color: rgb(15, 106, 115) !important; }
+.border_color_dim5 { border-color: rgb(15, 67, 74) !important; }
+
+/* Color Schema - Rings */
+.color_ring1 { color: rgb(87, 207, 128) !important; }
+.color_ring2 { color: rgb(1, 112, 173) !important; }
+.color_ring3 { color: rgb(18, 171, 219) !important; }
+.color_ring4 { color: rgb(168, 66, 224) !important; }
+
+.bg_color_ring1 { background-color: rgb(87, 207, 128) !important; }
+.bg_color_ring2 { background-color: rgb(1, 112, 173) !important; }
+.bg_color_ring3 { background-color: rgb(18, 171, 219) !important; }
+.bg_color_ring4 { background-color: rgb(168, 66, 224) !important; }
+
+.border_color_ring1 { border-color: rgb(87, 207, 128) !important; }
+.border_color_ring2 { border-color: rgb(1, 112, 173) !important; }
+.border_color_ring3 { border-color: rgb(18, 171, 219) !important; }
+.border_color_ring4 { border-color: rgb(168, 66, 224) !important; }

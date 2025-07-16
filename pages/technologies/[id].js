@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { marked } from 'marked';
 import { getRadarData, getTechnologyDetails, getRingColor, getDimensionColor } from '../../lib/dataLoader';
+import { getDimensionColorClass, getRingColorClass, getRingIndex } from '../../lib/colorUtils';
 import RadarChart from '../../components/RadarChart';
 import styles from '../../styles/TechnologyDetail.module.css';
 
@@ -35,11 +36,7 @@ export default function TechnologyDetail({ technology, radarData }) {
             <h1 className={styles.techTitle}>{technology.name}</h1>
             <div className={styles.techMeta}>
               <span 
-                className={styles.ringBadge}
-                style={{ 
-                  backgroundColor: ring?.color,
-                  color: 'white'
-                }}
+                className={`${styles.ringBadge} ${getRingColorClass(getRingIndex(ring?.id), 'bg')}`}
               >
                 {ring?.name}
               </span>
@@ -107,8 +104,7 @@ export default function TechnologyDetail({ technology, radarData }) {
                   return dimension ? (
                     <div className={styles.dimensionCard}>
                       <div 
-                        className={styles.dimensionBadge}
-                        style={{ backgroundColor: dimension.color, color: 'white' }}
+                        className={`${styles.dimensionBadge} ${getDimensionColorClass(radarData.dimensions.findIndex(d => d.id === dimension.id), 'bg')}`}
                       >
                         {dimension.name}
                       </div>

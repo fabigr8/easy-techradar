@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { getRadarData } from '../lib/dataLoader';
+import { getDimensionColorClass, getRingColorClass, getRingIndex } from '../lib/colorUtils';
 import RadarChart from '../components/RadarChart';
 import TechnologyList from '../components/TechnologyList';
 import styles from '../styles/Home.module.css';
@@ -71,7 +72,7 @@ export default function Home({ radarData }) {
                   <button
                     key={ring.id}
                     className={`${styles.ringBtn} ${selectedRing === ring.id ? styles.active : ''}`}
-                    style={{ '--ring-color': ring.color }}
+                    data-ring-color={getRingIndex(ring.id) + 1}
                     onClick={() => setSelectedRing(ring.id)}
                   >
                     {ring.name}
@@ -107,11 +108,10 @@ export default function Home({ radarData }) {
           <div className={styles.legend}>
             <h3>Rings</h3>
             <div className={styles.legendItems}>
-              {radarData.rings.map(ring => (
+              {radarData.rings.map((ring, index) => (
                 <div key={ring.id} className={styles.legendItem}>
                   <div 
-                    className={styles.legendColor}
-                    style={{ backgroundColor: ring.color }}
+                    className={`${styles.legendColor} ${getRingColorClass(index, 'bg')}`}
                   ></div>
                   <div>
                     <strong>{ring.name}</strong>
@@ -124,15 +124,16 @@ export default function Home({ radarData }) {
 
           {/* Technology Lists by Dimension */}
           <div className={styles.dimensionsGrid}>
-            {radarData.dimensions.map(dimension => (
+            {radarData.dimensions.map((dimension, index) => (
               <div key={dimension.id} className={styles.dimensionSection}>
-                <h3 style={{ color: dimension.color }}>{dimension.name}</h3>
+                <h3 className={getDimensionColorClass(index)}>{dimension.name}</h3>
                 <p className={styles.dimensionDescription}>{dimension.description}</p>
                 <TechnologyList 
                   technologies={filteredTechnologies.filter(tech => 
                     tech.dimension === dimension.id
                   )}
                   dimension={dimension}
+                  dimensionIndex={index}
                   rings={radarData.rings}
                 />
               </div>

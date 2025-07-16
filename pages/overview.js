@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { getRadarData } from '../lib/dataLoader';
+import { getDimensionColorClass, getRingColorClass, getRingIndex } from '../lib/colorUtils';
 import styles from '../styles/Overview.module.css';
 
 export default function Overview({ radarData }) {
@@ -135,11 +136,7 @@ export default function Overview({ radarData }) {
                     
                     <td className={styles.ringCell}>
                       <span 
-                        className={styles.ringBadge}
-                        style={{ 
-                          backgroundColor: ring?.color,
-                          color: 'white'
-                        }}
+                        className={`${styles.ringBadge} ${getRingColorClass(getRingIndex(ring?.id), 'bg')}`}
                       >
                         {ring?.name}
                       </span>
@@ -147,10 +144,8 @@ export default function Overview({ radarData }) {
                     
                     <td className={styles.dimensionsCell}>
                       <div className={styles.dimensionScore}>
-                        <span className={styles.dimensionName}>{dimension?.name}</span>
                         <span 
-                          className={styles.dimensionBadge}
-                          style={{ backgroundColor: dimension?.color, color: 'white' }}
+                          className={`${styles.dimensionBadge} ${getDimensionColorClass(radarData.dimensions.findIndex(d => d.id === dimension?.id), 'bg')}`}
                         >
                           {dimension?.name}
                         </span>
