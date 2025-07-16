@@ -10,6 +10,7 @@ import {
 } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
 import { getRingColor } from '../lib/dataLoader';
+import styles from './SpiderChart.module.css';
 
 ChartJS.register(
   RadialLinearScale,
@@ -103,19 +104,8 @@ export default function SpiderChart({ dimensions, technologies, selectedRing = n
   };
 
   return (
-    <div className="spider-chart-container" style={{ height: '600px', width: '100%' }}>
+    <div className={styles.spiderChartContainer} style={{ height: '600px', width: '100%' }}>
       <Radar ref={chartRef} data={data} options={options} />
-      
-      <style jsx>{`
-        .spider-chart-container {
-          position: relative;
-          margin: 2rem 0;
-          padding: 1rem;
-          background: white;
-          border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-      `}</style>
     </div>
   );
 }

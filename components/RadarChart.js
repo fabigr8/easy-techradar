@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import styles from './RadarChart.module.css';
 
 export default function RadarChart({ dimensions, technologies, selectedRing = null }) {
   const [hoveredTech, setHoveredTech] = useState(null);
@@ -79,8 +80,8 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
   };
 
   return (
-    <div className="radar-chart-container">
-      <svg width={size} height={size} className="radar-chart">
+    <div className={styles.radarChartContainer}>
+      <svg width={size} height={size} className={styles.radarChart}>
         {/* Background polygons for each ring */}
         {['adopt', 'trial', 'assess', 'hold'].map((ringId, index) => {
           const ringColor = ringColors[ringId];
@@ -170,7 +171,7 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
                 fill={ringColor}
                 stroke="white"
                 strokeWidth="2"
-                className="tech-dot"
+                className={styles.techDot}
                 onMouseEnter={() => setHoveredTech(tech.id)}
                 onMouseLeave={() => setHoveredTech(null)}
                 style={{ cursor: 'pointer' }}
@@ -239,96 +240,18 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
       </svg>
       
       {/* Ring labels */}
-      <div className="ring-labels">
+      <div className={styles.ringLabels}>
         {[
           { id: 'adopt', name: 'Adopt', color: '#32B569' },
           { id: 'trial', name: 'Trial', color: '#12ABDB' },
           { id: 'assess', name: 'Assess', color: '#0070AD' },
           { id: 'hold', name: 'Hold', color: '#A842E0' }
         ].map(ring => (
-          <div key={ring.id} className="ring-label" style={{ color: ring.color }}>
+          <div key={ring.id} className={styles.ringLabel} style={{ color: ring.color }}>
             {ring.name}
           </div>
         ))}
       </div>
-
-      <style jsx>{`
-        .radar-chart-container {
-          position: relative;
-          margin: 2rem 0;
-          padding: 2rem;
-          background: #272936;
-          border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          overflow: visible;
-          min-height: 750px;
-        }
-
-        .radar-chart {
-          max-width: 100%;
-          height: auto;
-          overflow: visible;
-        }
-
-        .tech-dot {
-          transition: all 0.2s ease;
-        }
-
-        .tech-dot:hover {
-          filter: brightness(1.2);
-        }
-
-        .ring-labels {
-          position: absolute;
-          top: 20px;
-          left: 20px;
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-
-        .ring-label {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 0.9rem;
-          font-weight: 600;
-        }
-
-        .ring-label::before {
-          content: '';
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background: currentColor;
-        }
-
-        @media (max-width: 768px) {
-          .radar-chart-container {
-            padding: 1rem;
-            min-height: 600px;
-          }
-          
-          .radar-chart {
-            width: 100%;
-            max-width: 500px;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .radar-chart-container {
-            padding: 0.5rem;
-            min-height: 450px;
-          }
-          
-          .radar-chart {
-            max-width: 400px;
-          }
-        }
-      `}</style>
     </div>
   );
 }

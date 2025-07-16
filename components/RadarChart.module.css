@@ -1,0 +1,75 @@
+.radarChartContainer {
+  position: relative;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #272936;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  min-height: 750px;
+}
+
+.radarChart {
+  max-width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.techDot {
+  transition: all 0.2s ease;
+}
+
+.techDot:hover {
+  filter: brightness(1.2);
+}
+
+.ringLabels {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ringLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ringLabel::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+@media (max-width: 768px) {
+  .radarChartContainer {
+    padding: 1rem;
+    min-height: 600px;
+  }
+  
+  .radarChart {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .radarChartContainer {
+    padding: 0.5rem;
+    min-height: 450px;
+  }
+  
+  .radarChart {
+    max-width: 400px;
+  }
+}

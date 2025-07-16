@@ -18,7 +18,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none; /*was underline*/
 }
 
 /* Global dark theme overrides */
@@ -42,7 +42,7 @@ a:hover {
 }
 
 .technologies-table th {
-  background: #2a2d3a !important;
+  background: #272936 !important;
   color: #FFF !important;
   border-bottom: 2px solid #0A0A0E !important;
 }
