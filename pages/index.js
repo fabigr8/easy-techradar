@@ -140,11 +140,19 @@ export default function Home({ radarData }) {
         </main>
       </div>
 
+      <style jsx global>{`
+        body {
+          background: #0A0A0E;
+          margin: 0;
+          padding: 0;
+        }
+      `}</style>
       <style jsx>{`
         .container {
           max-width: 1200px;
           margin: 0 auto;
           padding: 2rem;
+          background: #0A0A0E;
           font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
@@ -155,18 +163,18 @@ export default function Home({ radarData }) {
 
         .header h1 {
           font-size: 2.5rem;
-          color: #333;
+          color: #FFF;
           margin-bottom: 0.5rem;
         }
 
         .version {
-          color: #7CB518;
+          color: #32B569;
           font-weight: normal;
         }
 
         .description {
           font-size: 1.2rem;
-          color: #666;
+          color: #CCC;
           margin-bottom: 2rem;
         }
 
@@ -178,21 +186,21 @@ export default function Home({ radarData }) {
 
         .nav-link {
           padding: 0.5rem 1rem;
-          background: #f5f5f5;
+          background: #373847;
           border-radius: 6px;
           text-decoration: none;
-          color: #333;
+          color: #FFF;
           transition: background 0.2s;
         }
 
         .nav-link:hover {
-          background: #e5e5e5;
+          background: #32B569;
         }
 
         .controls {
           margin-bottom: 2rem;
           padding: 1.5rem;
-          background: #f8f9fa;
+          background: #373847;
           border-radius: 8px;
         }
 
@@ -206,7 +214,7 @@ export default function Home({ radarData }) {
 
         .control-group h3 {
           margin-bottom: 0.5rem;
-          color: #333;
+          color: #FFF;
         }
 
         .ring-filters, .tag-filters {
@@ -217,8 +225,9 @@ export default function Home({ radarData }) {
 
         .ring-btn, .tag-btn {
           padding: 0.5rem 1rem;
-          border: 2px solid #ddd;
-          background: white;
+          border: 2px solid #555;
+          background: #272936;
+          color: #FFF;
           border-radius: 20px;
           cursor: pointer;
           transition: all 0.2s;
@@ -226,37 +235,37 @@ export default function Home({ radarData }) {
         }
 
         .ring-btn.active {
-          border-color: var(--ring-color, #7CB518);
-          background: var(--ring-color, #7CB518);
+          border-color: var(--ring-color, #32B569);
+          background: var(--ring-color, #32B569);
           color: white;
         }
 
         .tag-btn.active {
-          border-color: #7CB518;
-          background: #7CB518;
+          border-color: #32B569;
+          background: #32B569;
           color: white;
         }
 
         .ring-btn:hover, .tag-btn:hover {
-          border-color: #999;
+          border-color: #32B569;
         }
 
         .legend {
           margin: 2rem 0;
           padding: 1.5rem;
-          background: white;
+          background: #373847;
           border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .legend h3 {
           margin-bottom: 1rem;
-          color: #333;
+          color: #FFF;
         }
 
         .legend-items {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          grid-template-columns: repeat(2, 2fr);
           gap: 1rem;
         }
 
@@ -275,38 +284,40 @@ export default function Home({ radarData }) {
         }
 
         .legend-item strong {
-          color: #333;
+          color: #FFF;
           display: block;
           margin-bottom: 0.25rem;
         }
 
         .legend-item p {
-          color: #666;
+          color: #CCC;
           font-size: 0.9rem;
           margin: 0;
         }
 
         .dimensions-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: repeat(2, 1fr);
           gap: 2rem;
           margin-top: 3rem;
         }
 
         .dimension-section {
           padding: 1.5rem;
-          background: white;
+          background: #373847;
           border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .dimension-section h3 {
           margin-bottom: 0.5rem;
           font-size: 1.3rem;
+          color: #FFF;
         }
 
         .dimension-description {
-          color: #666;
+          color: #CCC;
           font-size: 0.9rem;
           margin-bottom: 1rem;
         }
@@ -323,6 +334,10 @@ export default function Home({ radarData }) {
           .nav {
             flex-direction: column;
             align-items: center;
+          }
+
+          .legend-items {
+            grid-template-columns: 1fr;
           }
 
           .dimensions-grid {

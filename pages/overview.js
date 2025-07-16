@@ -225,11 +225,19 @@ export default function Overview({ radarData }) {
         )}
       </div>
 
+      <style jsx global>{`
+        body {
+          background: #0A0A0E;
+          margin: 0;
+          padding: 0;
+        }
+      `}</style>
       <style jsx>{`
         .container {
           max-width: 1400px;
           margin: 0 auto;
           padding: 2rem;
+          background: #0A0A0E;
           font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
@@ -321,7 +329,7 @@ export default function Overview({ radarData }) {
         .table-container {
           background: white;
           border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
           overflow: hidden;
           overflow-x: auto;
         }
@@ -333,22 +341,22 @@ export default function Overview({ radarData }) {
         }
 
         .technologies-table th {
-          background: #f8f9fa;
+          background: #0A0A0E;
           padding: 1rem;
           text-align: left;
           font-weight: 600;
           color: #333;
-          border-bottom: 2px solid #dee2e6;
+          border-bottom: 2px solid #0A0A0E;
         }
 
         .technologies-table td {
           padding: 1rem;
-          border-bottom: 1px solid #dee2e6;
+          border-bottom: 1px solid #0A0A0E;
           vertical-align: top;
         }
 
         .tech-row:hover {
-          background: #f8f9fa;
+          background: #0A0A0E;
         }
 
         .tech-name-container {
@@ -356,13 +364,13 @@ export default function Overview({ radarData }) {
         }
 
         .tech-name {
-          color: #333;
+          color: #FFF;
           display: block;
           margin-bottom: 0.25rem;
         }
 
         .tech-description {
-          color: #666;
+          color: #CCC;
           font-size: 0.9rem;
           margin: 0;
           line-height: 1.4;
@@ -390,7 +398,7 @@ export default function Overview({ radarData }) {
         }
 
         .dimension-name {
-          color: #666;
+          color: #CCC;
           min-width: 80px;
         }
 
@@ -409,7 +417,7 @@ export default function Overview({ radarData }) {
           padding: 0.125rem 0.375rem;
           border-radius: 10px;
           font-size: 0.75rem;
-          color: #666;
+          color: #CCC;
           cursor: pointer;
           margin-top: 0.25rem;
         }

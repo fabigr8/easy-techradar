@@ -72,10 +72,10 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
 
   // Get ring colors from your data
   const ringColors = {
-    adopt: '#588157',
-    trial: '#457b9d', 
-    assess: '#bc6c25',
-    hold: '#d62828'
+    adopt: '#32B569',
+    trial: '#12ABDB', 
+    assess: '#0070AD',
+    hold: '#A842E0'
   };
 
   return (
@@ -115,7 +115,7 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
                 y1={center}
                 x2={outerVertex.x}
                 y2={outerVertex.y}
-                stroke="#ddd"
+                stroke="#555"
                 strokeWidth="1"
               />
               <text
@@ -123,7 +123,7 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
                 y={center + Math.sin(angle) * (maxRadius + 35)}
                 textAnchor="middle"
                 dominantBaseline="middle"
-                fill="#333"
+                fill="#FFF"
                 fontSize="13"
                 fontWeight="bold"
               >
@@ -149,7 +149,7 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
               y1={center}
               x2={outerPoint.x}
               y2={outerPoint.y}
-              stroke="#f0f0f0"
+              stroke="#444"
               strokeWidth="1"
               strokeDasharray="5,5"
             />
@@ -241,10 +241,10 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
       {/* Ring labels */}
       <div className="ring-labels">
         {[
-          { id: 'adopt', name: 'Adopt', color: '#588157' },
-          { id: 'trial', name: 'Trial', color: '#457b9d' },
-          { id: 'assess', name: 'Assess', color: '#bc6c25' },
-          { id: 'hold', name: 'Hold', color: '#d62828' }
+          { id: 'adopt', name: 'Adopt', color: '#32B569' },
+          { id: 'trial', name: 'Trial', color: '#12ABDB' },
+          { id: 'assess', name: 'Assess', color: '#0070AD' },
+          { id: 'hold', name: 'Hold', color: '#A842E0' }
         ].map(ring => (
           <div key={ring.id} className="ring-label" style={{ color: ring.color }}>
             {ring.name}
@@ -257,9 +257,9 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
           position: relative;
           margin: 2rem 0;
           padding: 2rem;
-          background: white;
+          background: #272936;
           border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
           display: flex;
           justify-content: center;
           align-items: center;

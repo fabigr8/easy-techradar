@@ -157,6 +157,13 @@ export default function About() {
         </main>
       </div>
 
+      <style jsx global>{`
+        body {
+          background: #0A0A0E;
+          margin: 0;
+          padding: 0;
+        }
+      `}</style>
       <style jsx>{`
         .container {
           max-width: 900px;

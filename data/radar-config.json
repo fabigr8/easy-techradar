@@ -7,28 +7,28 @@
       "id": "adopt",
       "name": "Adopt",
       "description": "Technologies we think you should seriously consider using.",
-      "color": "#588157",
+      "color": "#32B569",
       "radius": 130
     },
     {
       "id": "trial", 
       "name": "Trial",
       "description": "Technologies that are ready for use, but not as completely proven as those in the Adopt ring.",
-      "color": "#457b9d",
+      "color": "#12ABDB",
       "radius": 200
     },
     {
       "id": "assess",
       "name": "Assess", 
       "description": "Technologies to look at closely, but not necessarily trial yet.",
-      "color": "#bc6c25",
+      "color": "#0070AD",
       "radius": 270
     },
     {
       "id": "hold",
       "name": "Hold",
       "description": "Technologies to proceed with caution.",
-      "color": "#d62828",
+      "color": "#A842E0",
       "radius": 340
     }
   ],

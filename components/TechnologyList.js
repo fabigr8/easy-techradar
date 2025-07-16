@@ -11,165 +11,145 @@ export default function TechnologyList({ technologies, dimension, rings }) {
   }, {});
   
   return (
-    <div className="technology-list">
-      {rings.map(ring => {
-        const ringTechs = techsByRing[ring.id];
-        if (ringTechs.length === 0) return null;
-
-        return (
-          <div key={ring.id} className="ring-section">
-            <h4 className="ring-title" style={{ color: ring.color }}>
-              {ring.name} ({ringTechs.length})
-            </h4>
-            <ul className="tech-list">
-              {ringTechs.map(tech => (
-                <li key={tech.id} className="tech-item">
-                  <Link href={`/technologies/${tech.id}`} className="tech-link">
-                    <div className="tech-content">
-                      <div className="tech-header">
-                        <span className="tech-name">{tech.name}</span>
-                        <div className="tech-indicators">
-                          {tech.isNew && (
-                            <span className="indicator new">NEW</span>
-                          )}
-                          {tech.hasChanged && (
-                            <span className="indicator changed">CHANGED</span>
-                          )}
-                        </div>
-                      </div>
-                      <div className="tech-tags">
-                        {tech.tags.slice(0, 3).map(tag => (
-                          <span key={tag} className="tag">{tag}</span>
-                        ))}
-                        {tech.tags.length > 3 && (
-                          <span className="tag">+{tech.tags.length - 3}</span>
-                        )}
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+    <div className="technology-table">
+      {/* Table Header with Ring Names */}
+      <div className="table-header">
+        {rings.map(ring => (
+          <div 
+            key={ring.id} 
+            className="header-cell"
+            style={{ borderTopColor: ring.color }}
+          >
+            <div className="ring-indicator" style={{ backgroundColor: ring.color }}></div>
+            <span className="ring-name">{ring.name}</span>
+            <span className="tech-count">({techsByRing[ring.id].length})</span>
           </div>
-        );
-      })}
+        ))}
+      </div>
+
+      {/* Table Body with Technologies */}
+      <div className="table-body">
+        {rings.map(ring => {
+          const ringTechs = techsByRing[ring.id];
+          
+          return (
+            <div key={ring.id} className="ring-column">
+              {ringTechs.map(tech => (
+                <Link 
+                  key={tech.id} 
+                  href={`/technologies/${tech.id}`} 
+                  className="tech-item"
+                >
+                  <span className="tech-name">{tech.name}</span>
+                </Link>
+              ))}
+            </div>
+          );
+        })}
+      </div>
 
       <style jsx>{`
-        .technology-list {
-          space-y: 1.5rem;
+        .technology-table {
+          width: 100%;
         }
 
-        .ring-section {
-          margin-bottom: 1.5rem;
+        .table-header {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1px;
+          margin-bottom: 1px;
         }
 
-        .ring-title {
-          font-size: 1rem;
+        .header-cell {
+          background: #373847; #2a2d3a 
+          padding: 0.9rem;
+          text-align: center;
+          border-top: 3px solid;
+          border-radius: 6px 6px 0 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+        }
+
+        .ring-indicator {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+        }
+
+        .ring-name {
           font-weight: 600;
-          margin-bottom: 0.75rem;
-          padding-bottom: 0.25rem;
-          border-bottom: 2px solid currentColor;
+          color: #FFF;
+          font-size: 0.9rem;
         }
 
-        .tech-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
+        .tech-count {
+          color: #CCC;
+          font-size: 0.8rem;
         }
 
-        .tech-item {
-          margin-bottom: 0.5rem;
+        .table-body {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1px;
+          min-height: 200px;
         }
 
-        .tech-link {
-          display: block;
-          padding: 0.75rem;
-          background: #f8f9fa;
-          border-radius: 6px;
-          text-decoration: none;
-          color: inherit;
-          transition: all 0.2s;
-          border-left: 4px solid transparent;
-        }
-
-        .tech-link:hover {
-          background: #e9ecef;
-          border-left-color: ${dimension?.color || '#7CB518'};
-          transform: translateX(2px);
-        }
-
-        .tech-content {
+        .ring-column {
+          background: #373847; 
+          padding: 0.5rem;
           display: flex;
           flex-direction: column;
           gap: 0.5rem;
+          border-radius: 0 0 6px 6px;
         }
 
-        .tech-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-start;
-          gap: 0.5rem;
+        .tech-item {
+          display: block;
+          padding: 0.75rem;
+          background: #2a2d3a;
+          border-radius: 6px;
+          text-decoration: none;
+          color: #FFF;
+          transition: all 0.2s;
+          border-left: 3px solid transparent;
+        }
+
+        .tech-item:hover {
+          background: #373847;
+          border-left-color: ${dimension?.color || '#32B569'};
+          transform: translateX(2px);
         }
 
         .tech-name {
           font-weight: 600;
-          color: #333;
-          flex: 1;
-        }
-
-        .tech-indicators {
-          display: flex;
-          gap: 0.25rem;
-        }
-
-        .indicator {
-          padding: 0.125rem 0.375rem;
-          border-radius: 12px;
-          font-size: 0.7rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .indicator.new {
-          background: #d4edda;
-          color: #155724;
-        }
-
-        .indicator.changed {
-          background: #fff3cd;
-          color: #856404;
-        }
-
-        .tech-score {
-          font-size: 0.85rem;
-          color: #666;
-          font-weight: 500;
-        }
-
-        .tech-tags {
-          display: flex;
-          gap: 0.25rem;
-          flex-wrap: wrap;
-        }
-
-        .tag {
-          padding: 0.125rem 0.5rem;
-          background: #e9ecef;
-          color: #495057;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 500;
+          color: #FFF;
+          font-size: 0.9rem;
+          line-height: 1.3;
         }
 
         @media (max-width: 768px) {
-          .tech-header {
-            flex-direction: column;
-            align-items: flex-start;
+          .table-header,
+          .table-body {
+            grid-template-columns: repeat(2, 1fr);
           }
+        }
 
-          .tech-indicators {
-            margin-top: 0.25rem;
+        @media (max-width: 480px) {
+          .table-header,
+          .table-body {
+            grid-template-columns: 1fr;
+          }
+          
+          .header-cell {
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+          }
+          
+          .ring-column {
+            border-radius: 6px;
+            margin-bottom: 1rem;
           }
         }
       `}</style>

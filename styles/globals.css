@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: #272936;
+  color: #FFF;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Global dark theme overrides */
+.container {
+  background: #272936;
+  color: #FFF;
+}
+
+/* Update any card/component backgrounds */
+.technology-list,
+.dimension-section,
+.sidebar {
+  background: #373847 !important;
+  color: #FFF !important;
+}
+
+/* Table styling for dark theme */
+.technologies-table {
+  background: #373847;
+  color: #FFF;
+}
+
+.technologies-table th {
+  background: #2a2d3a !important;
+  color: #FFF !important;
+  border-bottom: 2px solid #0A0A0E !important;
+}
+
+.technologies-table td {
+  border-bottom: 1px solid #0A0A0E !important;
+}
+
+.tech-row:hover {
+  background: #3d4052 !important;
+}
+
+/* Form elements */
+input, select, button {
+  background: #373847;
+  color: #FFF;
+  border: 1px solid #555;
+}
+
+input:focus, select:focus, button:focus {
+  outline: 2px solid #32B569;
+}
+
+/* Update any white backgrounds to dark */
+.legend,
+.header {
+  background: transparent;
+  color: #FFF;
+}
