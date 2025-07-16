@@ -5,8 +5,8 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/technology-radar' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/technology-radar/' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/easy-techradar' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/easy-techradar/' : '',
 }
 
 module.exports = nextConfig
