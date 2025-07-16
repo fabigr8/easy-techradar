@@ -61,7 +61,7 @@ export default function TechnologyDetail({ technology, radarData }) {
           )}
         </header>
 
-        <div className={styles.contentGrid}>
+        <div className={styles.contentContainer}>
           <main className={styles.mainContent}>
             <section className={styles.descriptionSection}>
               <h2>Description</h2>
@@ -93,11 +93,18 @@ export default function TechnologyDetail({ technology, radarData }) {
                 ))}
               </div>
             </section>
-          </main>
-
-          <aside className={styles.sidebar}>
-            <div className={styles.primaryDimension}>
-              <h3>Primary Dimension</h3>
+            { /* Radar Chart Section */}
+            <section className={styles.radarChartSection}>
+              <h2>Technology Profile</h2>
+              <RadarChart 
+                dimensions={radarData.dimensions}
+                technologies={[technology]}
+                size={400}
+              />
+            </section>
+            { /* Dimension Section */}
+            <section className={styles.primaryDimension}>
+              <h2>Primary Dimension</h2>
               <div className={styles.dimensionInfo}>
                 {(() => {
                   const dimension = radarData.dimensions.find(d => d.id === technology.dimension);
@@ -115,21 +122,20 @@ export default function TechnologyDetail({ technology, radarData }) {
                   );
                 })()}
               </div>
-            </div>
-
-            <div className={styles.radarChartSection}>
-              <h3>Technology Profile</h3>
-              <RadarChart 
-                dimensions={radarData.dimensions}
-                technologies={[technology]}
-              />
-            </div>
-
-            <div className={styles.ringInfo}>
-              <h3>About {ring?.name}</h3>
-              <p className={styles.ringDescription}>{ring?.description}</p>
-            </div>
-          </aside>
+            </section>
+            { /* ring info Section */}
+            <section className={styles.ringInfo}>
+              <h2>About {ring?.name}</h2>
+              <div className={styles.ringCard}>
+                <div 
+                  className={`${styles.ringBadge} ${getRingColorClass(getRingIndex(ring?.id), 'bg')}`}
+                >
+                  {ring?.name}
+                </div>
+                <p className={styles.ringDescription}>{ring?.description}</p>
+              </div>
+            </section>
+          </main>
         </div>
       </div>
 

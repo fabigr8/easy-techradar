@@ -84,19 +84,22 @@
   background: #28a745;
 }
 
-.contentGrid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
+.contentContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.mainContent {
+  width: 100%;
 }
 
 .mainContent section {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .mainContent h2 {
   color: #FFF;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-size: 1.5rem;
 }
 
@@ -159,42 +162,99 @@
 }
 
 .primaryDimension {
-  margin-bottom: 2rem;
+  background: #2a2d3a;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+  margin-bottom: 3rem;
 }
 
-.dimensionCard {
-  text-align: center;
+.primaryDimension h2 {
+  color: #FFF;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
 }
 
-.dimensionBadge {
+.primaryDimension .dimensionCard {
+  text-align: left;
+}
+
+.primaryDimension .dimensionBadge {
   display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
   font-weight: 600;
   margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
-.dimensionDescription {
+.primaryDimension .dimensionDescription {
   color: #CCC;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  font-size: 1rem;
+  line-height: 1.6;
   margin: 0;
 }
 
 .radarChartSection {
-  height: 400px;
+  background: #2a2d3a;
+  border-radius: 8px;
+  padding: 2rem;
+  border: 1px solid #444;
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-.ringDescription {
+.radarChartSection h2 {
+  color: #FFF;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+/* Override default radar chart container styles for main content */
+.radarChartSection :global(.radarChartContainer) {
+  margin: 0 auto;
+  background: transparent;
+  box-shadow: none;
+  padding: 1rem;
+}
+
+.ringInfo {
+  background: #2a2d3a;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+  margin-bottom: 3rem;
+}
+
+.ringInfo h2 {
+  color: #FFF;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.ringCard {
+  text-align: left;
+}
+
+.ringInfo .ringBadge {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.ringInfo .ringDescription {
   color: #CCC;
-  line-height: 1.5;
-  font-size: 0.95rem;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
 }
 
 @media (max-width: 968px) {
-  .contentGrid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .contentContainer {
+    max-width: 100%;
   }
 
   .techHeader {
@@ -208,5 +268,17 @@
 
   .container {
     padding: 1rem;
+  }
+
+  .primaryDimension,
+  .radarChartSection,
+  .ringInfo {
+    padding: 0rem;
+  }
+
+  .radarChartSection h2,
+  .primaryDimension h2,
+  .ringInfo h2 {
+    font-size: 1.3rem;
   }
 }

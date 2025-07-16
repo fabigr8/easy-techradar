@@ -3,12 +3,11 @@ import Link from 'next/link';
 import { getRingColor, getDimensionColor } from '../lib/colorUtils';
 import styles from './RadarChart.module.css';
 
-export default function RadarChart({ dimensions, technologies, selectedRing = null }) {
+export default function RadarChart({ dimensions, technologies, selectedRing = null, size = 700 }) {
   const [hoveredTech, setHoveredTech] = useState(null);
   
-  const size = 700; // Increased size to accommodate labels
   const center = size / 2;
-  const maxRadius = size / 2 - 80; // Increased margin for labels
+  const maxRadius = size / 2 - (size > 400 ? 80 : 40); // Adjust margin based on size
   
   // Filter technologies based on selected ring
   const filteredTechnologies = selectedRing 
@@ -154,7 +153,7 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
           const dx = midpoint.x - center;
           const dy = midpoint.y - center;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const labelOffset = 35;
+          const labelOffset = size > 400 ? 35 : 25;
           
           const labelX = midpoint.x + (dx / distance) * labelOffset;
           const labelY = midpoint.y + (dy / distance) * labelOffset;
@@ -167,7 +166,7 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
               textAnchor="middle"
               dominantBaseline="middle"
               fill="#FFF"
-              fontSize="14"
+              fontSize={size > 400 ? "14" : "10"}
               fontWeight="bold"
             >
               {dimension.name}
@@ -179,13 +178,14 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
         {techPositions.map(tech => {
           const ringColor = ringColors[tech.ring];
           const isHovered = hoveredTech === tech.id;
+          const dotRadius = size > 400 ? (isHovered ? 8 : 6) : (isHovered ? 6 : 4);
           
           return (
             <g key={tech.id}>
               <circle
                 cx={tech.position.x}
                 cy={tech.position.y}
-                r={isHovered ? 8 : 6}
+                r={dotRadius}
                 fill={ringColor}
                 stroke="white"
                 strokeWidth="2"
@@ -222,7 +222,8 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
               {isHovered && (
                 <g>
                   {(() => {
-                    const textWidth = tech.name.length * 7 + 20; // Approximate text width
+                    const fontSize = size > 400 ? 12 : 10;
+                    const textWidth = tech.name.length * (fontSize * 0.6) + 20; // Approximate text width
                     const tooltipX = tech.position.x + 15;
                     const tooltipY = tech.position.y - 15;
                     
@@ -242,7 +243,7 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
                           x={tooltipX + 10}
                           y={tooltipY + 3}
                           fill="white"
-                          fontSize="12"
+                          fontSize={fontSize}
                           fontWeight="bold"
                         >
                           {tech.name}
