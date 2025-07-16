@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getRingColor, getDimensionColor } from '../lib/colorUtils';
 import styles from './RadarChart.module.css';
 
-export default function RadarChart({ dimensions, technologies, selectedRing = null, size = 700 }) {
+export default function RadarChart({ dimensions, technologies, selectedRing = null, size = 900 }) {
   const [hoveredTech, setHoveredTech] = useState(null);
   
   const center = size / 2;

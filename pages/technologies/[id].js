@@ -125,7 +125,7 @@ export default function TechnologyDetail({ technology, radarData }) {
             </section>
             { /* ring info Section */}
             <section className={styles.ringInfo}>
-              <h2>About {ring?.name}</h2>
+              <h2>Current Ring</h2>
               <div className={styles.ringCard}>
                 <div 
                   className={`${styles.ringBadge} ${getRingColorClass(getRingIndex(ring?.id), 'bg')}`}
