@@ -218,12 +218,15 @@
   padding: 1rem;
 }
 
-.ringInfo {
+.ringInfoAsCard {
   background: #2a2d3a;
   padding: 2rem;
   border-radius: 8px;
   border: 1px solid #444;
   margin-bottom: 3rem;
+}
+.ringInfo{
+  
 }
 
 .ringInfo h2 {

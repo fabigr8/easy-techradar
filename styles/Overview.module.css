@@ -162,7 +162,7 @@
 .dimensionScore {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   font-size: 0.85rem;
 }
 

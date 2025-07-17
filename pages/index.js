@@ -10,15 +10,27 @@ import styles from '../styles/Home.module.css';
 export default function Home({ radarData }) {
   const [selectedRing, setSelectedRing] = useState(null);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState(null);
 
   // Get all unique tags
   const allTags = [...new Set(radarData.technologies.flatMap(tech => tech.tags))].sort();
 
-  // Filter technologies based on selected ring and tags
+  // Filter technologies based on selected ring, tags, and status
   const filteredTechnologies = radarData.technologies.filter(tech => {
     const ringMatch = !selectedRing || tech.ring === selectedRing;
     const tagMatch = selectedTags.length === 0 || selectedTags.some(tag => tech.tags.includes(tag));
-    return ringMatch && tagMatch;
+    
+    // Status filter logic
+    let statusMatch = true;
+    if (selectedStatus === 'new') {
+      statusMatch = tech.isNew;
+    } else if (selectedStatus === 'changed') {
+      statusMatch = tech.hasChanged;
+    } else if (selectedStatus === 'unchanged') {
+      statusMatch = !tech.isNew && !tech.hasChanged;
+    }
+    
+    return ringMatch && tagMatch && statusMatch;
   });
 
   const toggleTag = (tag) => {
@@ -93,6 +105,36 @@ export default function Home({ radarData }) {
                     {tag}
                   </button>
                 ))}
+              </div>
+            </div>
+
+            <div className={styles.controlGroup}>
+              <h3>Filter by Status</h3>
+              <div className={styles.tagFilters}>
+                <button 
+                  className={`${styles.tagBtn} ${!selectedStatus ? styles.active : ''}`}
+                  onClick={() => setSelectedStatus(null)}
+                >
+                  All
+                </button>
+                <button
+                  className={`${styles.tagBtn} ${selectedStatus === 'new' ? styles.active : ''}`}
+                  onClick={() => setSelectedStatus('new')}
+                >
+                  🆕 New
+                </button>
+                <button
+                  className={`${styles.tagBtn} ${selectedStatus === 'changed' ? styles.active : ''}`}
+                  onClick={() => setSelectedStatus('changed')}
+                >
+                  Changed
+                </button>
+                <button
+                  className={`${styles.tagBtn} ${selectedStatus === 'unchanged' ? styles.active : ''}`}
+                  onClick={() => setSelectedStatus('unchanged')}
+                >
+                  Unchanged
+                </button>
               </div>
             </div>
           </div>

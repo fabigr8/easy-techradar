@@ -83,7 +83,7 @@
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .ringBtn.active {

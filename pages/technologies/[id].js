@@ -85,6 +85,18 @@ export default function TechnologyDetail({ technology, radarData }) {
               </section>
             )}
 
+            <section className={styles.ringInfo}>
+            <h2>Current Ring</h2>
+              <div className={styles.ringCard}>
+                <div 
+                  className={`${styles.ringBadge} ${getRingColorClass(getRingIndex(ring?.id), 'bg')}`}
+                >
+                  {ring?.name}
+                </div>
+                <p className={styles.ringDescription}>{ring?.description}</p>
+              </div>
+            </section>
+
             <section className={styles.tagsSection}>
               <h2>Tags</h2>
               <div className={styles.tags}>
@@ -93,7 +105,10 @@ export default function TechnologyDetail({ technology, radarData }) {
                 ))}
               </div>
             </section>
-            { /* Radar Chart Section */}
+
+
+
+            { /* ################   Radar Chart Section ############# */}
             <section className={styles.radarChartSection}>
               <h2>Technology Profile</h2>
               <RadarChart 
@@ -121,18 +136,6 @@ export default function TechnologyDetail({ technology, radarData }) {
                     <p>No dimension assigned</p>
                   );
                 })()}
-              </div>
-            </section>
-            { /* ring info Section */}
-            <section className={styles.ringInfo}>
-              <h2>Current Ring</h2>
-              <div className={styles.ringCard}>
-                <div 
-                  className={`${styles.ringBadge} ${getRingColorClass(getRingIndex(ring?.id), 'bg')}`}
-                >
-                  {ring?.name}
-                </div>
-                <p className={styles.ringDescription}>{ring?.description}</p>
               </div>
             </section>
           </main>
