@@ -116,8 +116,43 @@ export default function RadarChart({ dimensions, technologies, selectedRing = nu
               d={verticesToPath(vertices)}
               fill="none"
               stroke={ringColor}
-              strokeWidth="2"
+              strokeWidth="4"
               strokeOpacity="0.3"
+            />
+          );
+        })}
+        
+        {/* Dimension sector backgrounds with alternating shades */}
+        {dimensions.map((dimension, index) => {
+          const angleStep = (2 * Math.PI) / dimensions.length;
+          
+          // Get the two vertices that define this dimension sector
+          const currentVertexAngle = index * angleStep - Math.PI / 2;
+          const nextVertexAngle = (index + 1) * angleStep - Math.PI / 2;
+          
+          const currentVertex = {
+            x: center + Math.cos(currentVertexAngle) * maxRadius,
+            y: center + Math.sin(currentVertexAngle) * maxRadius
+          };
+          
+          const nextVertex = {
+            x: center + Math.cos(nextVertexAngle) * maxRadius,
+            y: center + Math.sin(nextVertexAngle) * maxRadius
+          };
+          
+          // Create triangular sector path with straight edges
+          const sectorPath = `M ${center} ${center} L ${currentVertex.x} ${currentVertex.y} L ${nextVertex.x} ${nextVertex.y} Z`;
+          
+          // Alternate background shade - every second dimension is slightly darker
+          const isAlternate = index % 2 === 1;
+          const backgroundColor = isAlternate ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
+          
+          return (
+            <path
+              key={`sector-${dimension.id}`}
+              d={sectorPath}
+              fill={backgroundColor}
+              stroke="none"
             />
           );
         })}

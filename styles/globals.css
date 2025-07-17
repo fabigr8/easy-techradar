@@ -94,16 +94,16 @@ input:focus, select:focus, button:focus {
 
 /* Color Schema - Rings */
 .color_ring1 { color: rgb(87, 207, 128) !important; }
-.color_ring2 { color: rgb(1, 112, 173) !important; }
-.color_ring3 { color: rgb(18, 171, 219) !important; }
+.color_ring3 { color: rgb(1, 112, 173) !important; }
+.color_ring2 { color: rgb(18, 171, 219) !important; }
 .color_ring4 { color: rgb(168, 66, 224) !important; }
 
 .bg_color_ring1 { background-color: rgb(87, 207, 128) !important; }
-.bg_color_ring2 { background-color: rgb(1, 112, 173) !important; }
-.bg_color_ring3 { background-color: rgb(18, 171, 219) !important; }
+.bg_color_ring3 { background-color: rgb(1, 112, 173) !important; }
+.bg_color_ring2 { background-color: rgb(18, 171, 219) !important; }
 .bg_color_ring4 { background-color: rgb(168, 66, 224) !important; }
 
 .border_color_ring1 { border-color: rgb(87, 207, 128) !important; }
-.border_color_ring2 { border-color: rgb(1, 112, 173) !important; }
-.border_color_ring3 { border-color: rgb(18, 171, 219) !important; }
+.border_color_ring3 { border-color: rgb(1, 112, 173) !important; }
+.border_color_ring2 { border-color: rgb(18, 171, 219) !important; }
 .border_color_ring4 { border-color: rgb(168, 66, 224) !important; }
