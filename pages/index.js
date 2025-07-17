@@ -48,24 +48,35 @@ export default function Home({ radarData }) {
         <meta name="description" content={radarData.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </Head>
 
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1 className={styles.headerTitle}>
-            {radarData.title}{' '}
-            <span className={styles.version}>Version #{radarData.version}</span>
-          </h1>
-          <p className={styles.description}>{radarData.description}</p>
+          {/* Top bar with logo and navigation */}
+          <div className={styles.topBar}>
+            <div className={styles.logo}>
+              {/* You can replace this with an actual logo image */}
+              <div className={styles.logoPlaceholder}>📡</div>
+            </div>
+            <nav className={styles.nav}>
+              <Link href="/overview" className={styles.navLink}>
+                <i className="fa fa-list"></i> Technologies Overview
+              </Link>
+              <Link href="/about" className={styles.navLink}>
+                <i className="fa fa-map"></i> How to use this Radar
+              </Link>
+            </nav>
+          </div>
           
-          <nav className={styles.nav}>
-            <Link href="/overview" className={styles.navLink}>
-              📊 Technologies Overview
-            </Link>
-            <Link href="/about" className={styles.navLink}>
-              ❓ How to use this Radar
-            </Link>
-          </nav>
+          {/* Title and description */}
+          <div className={styles.titleSection}>
+            <h1 className={styles.headerTitle}>
+              {radarData.title}{' '}
+              <span className={styles.version}>Version #{radarData.version}</span>
+            </h1>
+            <p className={styles.description}>{radarData.description}</p>
+          </div>
         </header>
 
         <main>
@@ -78,7 +89,7 @@ export default function Home({ radarData }) {
                   className={`${styles.ringBtn} ${!selectedRing ? styles.active : ''}`}
                   onClick={() => setSelectedRing(null)}
                 >
-                  All
+                  <i className="fa fa-list"></i> All
                 </button>
                 {radarData.rings.map(ring => (
                   <button
@@ -87,7 +98,7 @@ export default function Home({ radarData }) {
                     data-ring-color={getRingIndex(ring.id) + 1}
                     onClick={() => setSelectedRing(ring.id)}
                   >
-                    {ring.name}
+                    <i className="fa fa-circle"></i> {ring.name}
                   </button>
                 ))}
               </div>
@@ -102,7 +113,7 @@ export default function Home({ radarData }) {
                     className={`${styles.tagBtn} ${selectedTags.includes(tag) ? styles.active : ''}`}
                     onClick={() => toggleTag(tag)}
                   >
-                    {tag}
+                    <i className="fa fa-tag"></i> {tag}
                   </button>
                 ))}
               </div>
@@ -115,25 +126,25 @@ export default function Home({ radarData }) {
                   className={`${styles.tagBtn} ${!selectedStatus ? styles.active : ''}`}
                   onClick={() => setSelectedStatus(null)}
                 >
-                  All
+                  <i className="fa fa-list"></i> All
                 </button>
                 <button
                   className={`${styles.tagBtn} ${selectedStatus === 'new' ? styles.active : ''}`}
                   onClick={() => setSelectedStatus('new')}
                 >
-                  🆕 New
+                  <i className="fa fa-star"></i> New
                 </button>
                 <button
                   className={`${styles.tagBtn} ${selectedStatus === 'changed' ? styles.active : ''}`}
                   onClick={() => setSelectedStatus('changed')}
                 >
-                  Changed
+                  <i className="fa fa-edit"></i> Changed
                 </button>
                 <button
                   className={`${styles.tagBtn} ${selectedStatus === 'unchanged' ? styles.active : ''}`}
                   onClick={() => setSelectedStatus('unchanged')}
                 >
-                  Unchanged
+                  <i className="fa fa-minus"></i> Unchanged
                 </button>
               </div>
             </div>

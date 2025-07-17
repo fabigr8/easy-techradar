@@ -7,8 +7,37 @@
 }
 
 .header {
-  text-align: center;
   margin-bottom: 3rem;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rem;
+  padding: 1rem 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoPlaceholder {
+  font-size: 2rem;
+  color: #32B569;
+  background: #373847;
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+
+.titleSection {
+  text-align: center;
 }
 
 .headerTitle {
@@ -25,18 +54,18 @@
 .description {
   font-size: 1.2rem;
   color: #CCC;
-  margin-bottom: 2rem;
+  margin-bottom: 6rem;
 }
 
 .nav {
   display: flex;
   gap: 1rem;
-  justify-content: center;
+  align-items: center;
 }
 
 .navLink {
   padding: 0.5rem 1rem;
-  background: #373847;
+  background: #0A0A0E;
   border-radius: 6px;
   text-decoration: none;
   color: #FFF;
@@ -84,6 +113,9 @@
   cursor: pointer;
   transition: all 0.2s;
   font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .ringBtn.active {
@@ -205,9 +237,15 @@
     font-size: 2rem;
   }
 
-  .nav {
+  .topBar {
     flex-direction: column;
-    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .nav {
+    flex-direction: row;
+    justify-content: center;
   }
 
   .legendItems {

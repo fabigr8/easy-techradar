@@ -45,12 +45,13 @@ export default function Overview({ radarData }) {
       <Head>
         <title>Technologies Overview - Technology Radar</title>
         <meta name="description" content="Complete overview of all technologies in our radar" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </Head>
 
       <div className={styles.container}>
         <header className={styles.header}>
           <nav className={styles.breadcrumb}>
-            <Link href="/">← Back to Radar</Link>
+            <Link href="/"><i className="fa fa-arrow-left"></i> Back to Radar</Link>
           </nav>
           
           <h1>Technologies Overview</h1>
@@ -60,13 +61,16 @@ export default function Overview({ radarData }) {
         {/* Filters and Search */}
         <div className={styles.controls}>
           <div className={styles.searchSection}>
-            <input
-              type="text"
-              placeholder="Search technologies or tags..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className={styles.searchInput}
-            />
+            <div className={styles.searchInputContainer}>
+              <i className="fa fa-search"></i>
+              <input
+                type="text"
+                placeholder="Search technologies or tags..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className={styles.searchInput}
+              />
+            </div>
           </div>
 
           <div className={styles.filters}>
@@ -155,10 +159,14 @@ export default function Overview({ radarData }) {
                     <td className={styles.tagsCell}>
                       <div className={styles.tagsContainer}>
                         {tech.tags.slice(0, 3).map(tag => (
-                          <span key={tag} className={styles.tag}>{tag}</span>
+                          <span key={tag} className={styles.tag}>
+                            <i className="fa fa-tag"></i> {tag}
+                          </span>
                         ))}
                         {tech.tags.length > 3 && (
-                          <span className={`${styles.tag} ${styles.overflow}`}>+{tech.tags.length - 3}</span>
+                          <span className={`${styles.tag} ${styles.overflow}`}>
+                            <i className="fa fa-plus"></i>{tech.tags.length - 3}
+                          </span>
                         )}
                       </div>
                     </td>
@@ -183,7 +191,7 @@ export default function Overview({ radarData }) {
                           href={`/technologies/${tech.id}`}
                           className={`${styles.actionBtn} ${styles.viewBtn}`}
                         >
-                          View Details
+                          <i className="fa fa-eye"></i> View Details
                         </Link>
                         {tech.url && (
                           <a 
@@ -192,7 +200,7 @@ export default function Overview({ radarData }) {
                             rel="noopener noreferrer"
                             className={`${styles.actionBtn} ${styles.externalBtn}`}
                           >
-                            Website ↗
+                            <i className="fa fa-external-link"></i> Website
                           </a>
                         )}
                       </div>
@@ -215,7 +223,7 @@ export default function Overview({ radarData }) {
               }}
               className={styles.resetBtn}
             >
-              Clear Filters
+              <i className="fa fa-refresh"></i> Clear Filters
             </button>
           </div>
         )}
